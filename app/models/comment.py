@@ -1,9 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
-from .user import User
-from .post import Post
-
 class Comment(db.Model):
   __tablename__ = "comments"
 
@@ -24,6 +21,9 @@ class Comment(db.Model):
   post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')))
 
   post = db.relationship('Post', back_populates='comments')
+
+  # relationship connection
+  like = db.relationship('Like', back_populates='comments', cascade='all, delete-orphan')
 
   def to_dict(self):
     return {
