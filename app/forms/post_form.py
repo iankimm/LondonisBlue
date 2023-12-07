@@ -9,4 +9,4 @@ def starting_with_spaces(form, field):
 class PostForm(FlaskForm):
   title = StringField('title', validators=[DataRequired(), starting_with_spaces])
   body = TextAreaField('body', validators=[DataRequired()])
-  imageUrl = StringField('imageUrl')
+  # imageUrl = StringField('imageUrl')

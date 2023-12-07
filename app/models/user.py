@@ -24,7 +24,9 @@ class User(db.Model, UserMixin):
     post = db.relationship("Post", back_populates="user", cascade='all, delete-orphan')
     comment = db.relationship("Comment", back_populates='user', cascade='all, delete-orphan')
     follow = db.relationship("Follow", back_populates='user', cascade='all, delete-orphan')
-    like = db.relationship("Like", back_populates='user', cascade='all, delete-orphan')
+    commentlike = db.relationship("CommentLike", back_populates='user', cascade='all, delete-orphan')
+    postlike = db.relationship("PostLike", back_populates='user', cascade='all, delete-orphan')
+    postImage = db.relationship("postImage", back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
