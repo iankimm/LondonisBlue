@@ -1,8 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from datetime import datetime
 
-class Like(db.Model):
-  __tablename__ = "likes"
+class CommentLike(db.Model):
+  __tablename__ = "commentLikes"
 
   # check if environment == production and sets schema
   if environment == "production":
@@ -15,10 +14,13 @@ class Like(db.Model):
 
   user = db.relationship("User", back_populates="likes")
 
-  post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')))
-
-  post = db.relationship("Post", back_populates="likes")
-
   comment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('comments.id')))
 
   comment = db.relationship("Comment", back_populates="likes")
+
+  def to_dict(self):
+    return{
+      'id': self.id,
+      'user_id': self.user_id,
+      'comment_id': self.comment_id
+    }

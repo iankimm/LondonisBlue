@@ -12,7 +12,6 @@ class Post(db.Model):
   id = db.Column(db.Integer, autoincrement=True, primary_key=True)
   title = db.Column(db.String, nullable=False)
   body = db.Column(db.String, nullable=False)
-  imageUrl = db.Column(db.String, nullable=True)
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -23,14 +22,16 @@ class Post(db.Model):
 
   # relationship connection
   comment = db.relationship('Comment', back_populates='posts', cascade='all, delete-orphan')
-  like = db.relationship('Like', back_populates='posts', cascade='all, delete-orphan')
+
+  postLike = db.relationship('PostLike', back_populates='posts', cascade='all, delete-orphan')
+
+  postImage = db.relationship('postImage', back_populates='posts', cascade='all, delete-orphan')
 
   # output
   def to_dict(self):
     return{
       'id': self.id,
       'title': self.title,
-      'imageUrl': self.imageUrl,
       'body': self.body,
       'created_at': self.created_at
     }
