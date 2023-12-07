@@ -21,8 +21,9 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # relationship
-    post = db.relationship("Post", back_populates="user")
-    comment = db.relationship("Comment", back_populates='user')
+    post = db.relationship("Post", back_populates="user", cascade='all, delete-orphan')
+    comment = db.relationship("Comment", back_populates='user', cascade='all, delete-orphan')
+    follow = db.relationship("Follow", back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
@@ -42,5 +43,6 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'email': self.email,
-            'profileImageUrl': self.profileImageUrl
+            'profileImageUrl': self.profileImageUrl,
+            'created_at': self.created_at,
         }

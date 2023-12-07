@@ -32,5 +32,6 @@ class Post(db.Model):
       'id': self.id,
       'title': self.title,
       'imageUrl': self.imageUrl,
-      'body': self.body
+      'body': self.body,
+      'created_at': self.created_at
     }
