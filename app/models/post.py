@@ -23,6 +23,9 @@ class Post(db.Model):
 
   user = db.relationship("User", back_populates="posts")
 
+  # relationship connection
+  comment = db.relationship('Comment', back_populates='posts', cascade='all, delete-orphan')
+
   # output
   def to_dict(self):
     return{
