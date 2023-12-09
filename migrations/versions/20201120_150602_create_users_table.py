@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('firstName', sa.String(), nullable=False),
     sa.Column('lastName', sa.String(), nullable=False),
-    sa.Column('profileImageUrl', sa.String(), nullable=True),
+    sa.Column('image_url', sa.String(), nullable=True),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime()),
@@ -35,6 +35,16 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
+    )
+
+    op.create_table('follows',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('following_user_id', sa.Integer(), nullable=False),
+    sa.Column('followed_user_id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime()),
+    sa.PrimaryKeyConstraint('id'),
+    sa.ForeignKeyConstraint(['following_user_id'], ['users.id'],),
+    sa.ForeignKeyConstraint(['followed_user_id'], ['users.id'],),
     )
 
     op.create_table('posts',
@@ -50,7 +60,7 @@ def upgrade():
 
     op.create_table('postimages',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('imageUrl', sa.String(), nullable=False),
+    sa.Column('image_url', sa.String(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
@@ -70,15 +80,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'],),
     )
 
-    op.create_table('commentlikes',
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('comment_id', sa.Integer(), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'],),
-    sa.ForeignKeyConstraint(['comment_id'], ['comments.id'],),
-    )
-
     op.create_table('postlikes',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -88,14 +89,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'],),
     )
 
-    op.create_table('follows',
+    op.create_table('commentlikes',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('following_user_id', sa.Integer(), nullable=False),
-    sa.Column('followed_user_id', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime()),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('comment_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.ForeignKeyConstraint(['following_user_id'], ['users.id'],),
-    sa.ForeignKeyConstraint(['followed_user_id'], ['users.id'],),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'],),
+    sa.ForeignKeyConstraint(['comment_id'], ['comments.id'],),
     )
 
     if environment == "production":

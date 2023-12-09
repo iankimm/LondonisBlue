@@ -10,7 +10,7 @@ class PostImage(db.Model):
 
   # items
   id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-  imageUrl = db.Column(db.String, nullable=False)
+  image_url = db.Column(db.String, nullable=False)
 
   # relationship
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
@@ -25,5 +25,5 @@ class PostImage(db.Model):
   def to_dict(self):
     return{
       'id': self.id,
-      'imageUrl': self.imageUrl
+      'imageUrl': self.image_url
     }
