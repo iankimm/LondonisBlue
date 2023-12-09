@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 class PostImage(db.Model):
-  __tablename__ = "postImages"
+  __tablename__ = "postimages"
 
   # check if environment == production and sets schema
   if environment == "production":
@@ -15,11 +15,11 @@ class PostImage(db.Model):
   # relationship
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-  user = db.relationship("User", back_populates="postImages")
+  user = db.relationship("User", back_populates="postimages")
 
   post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')))
 
-  posts = db.relationship("Post", back_populates="postImages")
+  posts = db.relationship("Post", back_populates="postimages")
 
   # output
   def to_dict(self):
