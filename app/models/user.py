@@ -1,6 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
+from .follow import Follow
 
 
 class User(db.Model, UserMixin):
@@ -17,8 +19,26 @@ class User(db.Model, UserMixin):
     profileImageUrl = db.Column(db.String(255), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(
-        db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    # relationship
+    posts = db.relationship("Post", back_populates="user", cascade='all, delete-orphan')
+    comments = db.relationship("Comment", back_populates='user', cascade='all, delete-orphan')
+    following = db.relationship(
+        'Follow',
+        foreign_keys=[Follow.following_user_id],
+        back_populates='follower',
+    )
+
+    # Relationship for users following the current user
+    followed_by = db.relationship(
+        'Follow',
+        foreign_keys=[Follow.followed_user_id],
+        back_populates='followed',
+    )
+    commentLikes = db.relationship("CommentLike", back_populates='user', cascade='all, delete-orphan')
+    postLikes = db.relationship("PostLike", back_populates='user', cascade='all, delete-orphan')
+    postImages = db.relationship("PostImage", back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
@@ -38,5 +58,6 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'email': self.email,
-            'profileImageUrl': self.profileImageUrl
+            'profileImageUrl': self.profileImageUrl,
+            'created_at': self.created_at,
         }
