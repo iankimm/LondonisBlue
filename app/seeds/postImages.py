@@ -25,8 +25,8 @@ def seed_postImages():
 # it will reset the primary keys for you as well.
 def undo_postImages():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.postImages RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.postimages RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM postImages"))
+        db.session.execute(text("DELETE FROM postimages"))
 
     db.session.commit()

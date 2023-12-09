@@ -24,8 +24,8 @@ def seed_commentLikes():
 # it will reset the primary keys for you as well.
 def undo_commentLikes():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.commentLikes RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.commentlikes RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM commentLikes"))
+        db.session.execute(text("DELETE FROM commentlikes"))
 
     db.session.commit()

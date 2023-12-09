@@ -24,8 +24,8 @@ def seed_postLikes():
 # it will reset the primary keys for you as well.
 def undo_postLikes():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.postLikes RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.postlikes RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM postLikes"))
+        db.session.execute(text("DELETE FROM postlikes"))
 
     db.session.commit()
