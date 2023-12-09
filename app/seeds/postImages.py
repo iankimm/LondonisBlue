@@ -9,7 +9,7 @@ def seed_postImages():
 
     for image in post_images_data:
         seed_post = PostImage(
-            imageUrl = image['imageUrl'],
+            image_url = image['image_url'],
             user_id = image['user_id'],
             post_id = image['post_id']
         )
