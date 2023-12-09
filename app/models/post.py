@@ -18,14 +18,14 @@ class Post(db.Model):
   # relationship
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-  user = db.relationship("user", back_populates="posts")
+  user = db.relationship("User", back_populates="posts")
 
   # relationship connection
-  comments = db.relationship('comment', back_populates='posts', cascade='all, delete-orphan')
+  comments = db.relationship('Comment', back_populates='posts', cascade='all, delete-orphan')
 
-  postlikes = db.relationship('postlike', back_populates='posts', cascade='all, delete-orphan')
+  postlikes = db.relationship('PostLike', back_populates='posts', cascade='all, delete-orphan')
 
-  postimages = db.relationship('postimage', back_populates='posts', cascade='all, delete-orphan')
+  postimages = db.relationship('PostImage', back_populates='posts', cascade='all, delete-orphan')
 
   # output
   def to_dict(self):

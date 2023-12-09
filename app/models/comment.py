@@ -16,14 +16,14 @@ class Comment(db.Model):
   # relationship
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
 
-  user = db.relationship('user', back_populates='comments')
+  user = db.relationship('User', back_populates='comments')
 
   post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')))
 
-  posts = db.relationship('post', back_populates='comments')
+  posts = db.relationship('Post', back_populates='comments')
 
   # relationship connection
-  commentlikes = db.relationship('commentlike', back_populates='comment', cascade='all, delete-orphan')
+  commentlikes = db.relationship('CommentLike', back_populates='comment', cascade='all, delete-orphan')
 
   def to_dict(self):
     return {
