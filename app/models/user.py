@@ -22,23 +22,23 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # relationship
-    posts = db.relationship("Post", back_populates="user", cascade='all, delete-orphan')
-    comments = db.relationship("Comment", back_populates='user', cascade='all, delete-orphan')
+    posts = db.relationship("post", back_populates="user", cascade='all, delete-orphan')
+    comments = db.relationship("comment", back_populates='user', cascade='all, delete-orphan')
     following = db.relationship(
-        'Follow',
+        'follow',
         foreign_keys=[Follow.following_user_id],
         back_populates='follower',
     )
 
     # Relationship for users following the current user
     followed_by = db.relationship(
-        'Follow',
+        'follow',
         foreign_keys=[Follow.followed_user_id],
         back_populates='followed',
     )
-    commentlikes = db.relationship("CommentLike", back_populates='user', cascade='all, delete-orphan')
-    postlikes = db.relationship("PostLike", back_populates='user', cascade='all, delete-orphan')
-    postimages = db.relationship("PostImage", back_populates='user', cascade='all, delete-orphan')
+    commentlikes = db.relationship("commentlike", back_populates='user', cascade='all, delete-orphan')
+    postlikes = db.relationship("postlike", back_populates='user', cascade='all, delete-orphan')
+    postimages = db.relationship("postimage", back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
