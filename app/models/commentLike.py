@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class CommentLike(db.Model):
-  __tablename__ = "commentLikes"
+  __tablename__ = "commentlikes"
 
   # check if environment == production and sets schema
   if environment == "production":
@@ -12,11 +12,11 @@ class CommentLike(db.Model):
   # relationships
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-  user = db.relationship("User", back_populates="commentLikes")
+  user = db.relationship("User", back_populates="commentlikes")
 
   comment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('comments.id')))
 
-  comment = db.relationship("Comment", back_populates="commentLikes")
+  comment = db.relationship("Comment", back_populates="commentlikes")
 
   def to_dict(self):
     return{

@@ -23,9 +23,9 @@ class Post(db.Model):
   # relationship connection
   comments = db.relationship('Comment', back_populates='posts', cascade='all, delete-orphan')
 
-  postLikes = db.relationship('PostLike', back_populates='posts', cascade='all, delete-orphan')
+  postlikes = db.relationship('PostLike', back_populates='posts', cascade='all, delete-orphan')
 
-  postImages = db.relationship('PostImage', back_populates='posts', cascade='all, delete-orphan')
+  postimages = db.relationship('PostImage', back_populates='posts', cascade='all, delete-orphan')
 
   # output
   def to_dict(self):
