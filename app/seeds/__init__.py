@@ -1,5 +1,12 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .posts import seed_posts, undo_posts
+from .postImages import seed_postImages, undo_postImages
+from .comments import seed_comments, undo_comments
+from .commentLikes import seed_commentLikes, undo_commentLikes
+from .postLikes import seed_postLikes, undo_postLikes
+from .follows import seed_follows, undo_follows
+
 
 from app.models.db import db, environment, SCHEMA
 
@@ -12,12 +19,24 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     if environment == 'production':
-        # Before seeding in production, you want to run the seed undo 
-        # command, which will  truncate all tables prefixed with 
+        # Before seeding in production, you want to run the seed undo
+        # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_users()
+        undo_posts()
+        undo_postImages()
+        undo_comments()
+        undo_commentLikes()
+        undo_postLikes()
+        undo_follows()
     seed_users()
+    seed_posts()
+    seed_postImages()
+    seed_comments()
+    seed_commentLikes()
+    seed_postLikes()
+    seed_follows()
     # Add other seed functions here
 
 
@@ -25,4 +44,10 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_posts()
+    undo_postImages()
+    undo_comments()
+    undo_commentLikes()
+    undo_postLikes()
+    undo_follows()
     # Add other undo functions here

@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from .follow import Follow
 
 
 class User(db.Model, UserMixin):
@@ -21,12 +22,23 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # relationship
-    post = db.relationship("Post", back_populates="user", cascade='all, delete-orphan')
-    comment = db.relationship("Comment", back_populates='user', cascade='all, delete-orphan')
-    follow = db.relationship("Follow", back_populates='user', cascade='all, delete-orphan')
-    commentlike = db.relationship("CommentLike", back_populates='user', cascade='all, delete-orphan')
-    postlike = db.relationship("PostLike", back_populates='user', cascade='all, delete-orphan')
-    postImage = db.relationship("postImage", back_populates='user', cascade='all, delete-orphan')
+    posts = db.relationship("Post", back_populates="user", cascade='all, delete-orphan')
+    comments = db.relationship("Comment", back_populates='user', cascade='all, delete-orphan')
+    following = db.relationship(
+        'Follow',
+        foreign_keys=[Follow.following_user_id],
+        back_populates='follower',
+    )
+
+    # Relationship for users following the current user
+    followed_by = db.relationship(
+        'Follow',
+        foreign_keys=[Follow.followed_user_id],
+        back_populates='followed',
+    )
+    commentLikes = db.relationship("CommentLike", back_populates='user', cascade='all, delete-orphan')
+    postLikes = db.relationship("PostLike", back_populates='user', cascade='all, delete-orphan')
+    postImages = db.relationship("PostImage", back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):

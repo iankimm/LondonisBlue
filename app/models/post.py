@@ -21,11 +21,11 @@ class Post(db.Model):
   user = db.relationship("User", back_populates="posts")
 
   # relationship connection
-  comment = db.relationship('Comment', back_populates='posts', cascade='all, delete-orphan')
+  comments = db.relationship('Comment', back_populates='posts', cascade='all, delete-orphan')
 
-  postLike = db.relationship('PostLike', back_populates='posts', cascade='all, delete-orphan')
+  postLikes = db.relationship('PostLike', back_populates='posts', cascade='all, delete-orphan')
 
-  postImage = db.relationship('postImage', back_populates='posts', cascade='all, delete-orphan')
+  postImages = db.relationship('PostImage', back_populates='posts', cascade='all, delete-orphan')
 
   # output
   def to_dict(self):

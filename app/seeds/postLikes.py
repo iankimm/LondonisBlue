@@ -1,17 +1,16 @@
-from app.models import db, Post, environment, SCHEMA
+from app.models import db, PostLike, environment, SCHEMA
 from sqlalchemy.sql import text
-from .seed_data.post_data import posts_data
+from .seed_data.post_like_data import post_likes_data
 
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_posts():
+def seed_postLikes():
 
-    for post in posts_data:
-        seed_post = Post(
-            title = post['title'],
-            body = post['body'],
-            user_id = post['user_id']
+    for like in post_likes_data:
+        seed_post = PostLike(
+            user_id = like['user_id'],
+            post_id = like['post_id'],
         )
         db.session.add(seed_post)
     db.session.commit()
@@ -23,10 +22,10 @@ def seed_posts():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_posts():
+def undo_postLikes():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.postLikes RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM posts"))
+        db.session.execute(text("DELETE FROM postLikes"))
 
     db.session.commit()

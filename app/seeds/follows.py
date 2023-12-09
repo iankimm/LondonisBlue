@@ -1,17 +1,16 @@
-from app.models import db, Post, environment, SCHEMA
+from app.models import db, Follow, environment, SCHEMA
 from sqlalchemy.sql import text
-from .seed_data.post_data import posts_data
+from .seed_data.follow_data import follows_data
 
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_posts():
+def seed_follows():
 
-    for post in posts_data:
-        seed_post = Post(
-            title = post['title'],
-            body = post['body'],
-            user_id = post['user_id']
+    for follow in follows_data:
+        seed_post = Follow(
+            following_user_id = follow['following_user_id'],
+            followed_user_id = follow['followed_user_id']
         )
         db.session.add(seed_post)
     db.session.commit()
@@ -23,10 +22,10 @@ def seed_posts():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_posts():
+def undo_follows():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.follows RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM posts"))
+        db.session.execute(text("DELETE FROM follows"))
 
     db.session.commit()

@@ -12,11 +12,11 @@ class CommentLike(db.Model):
   # relationships
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-  user = db.relationship("User", back_populates="likes")
+  user = db.relationship("User", back_populates="commentLikes")
 
   comment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('comments.id')))
 
-  comment = db.relationship("Comment", back_populates="likes")
+  comment = db.relationship("Comment", back_populates="commentLikes")
 
   def to_dict(self):
     return{

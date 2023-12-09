@@ -15,11 +15,11 @@ class PostImage(db.Model):
   # relationship
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-  user = db.relationship("User", back_populates="posts")
+  user = db.relationship("User", back_populates="postImages")
 
   post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')))
 
-  post = db.relationship("Post", back_populates="posts")
+  posts = db.relationship("Post", back_populates="postImages")
 
   # output
   def to_dict(self):
