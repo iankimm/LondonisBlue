@@ -41,7 +41,7 @@ def get_posts_by_user_id():
   return jsonify({"UserAllPosts": posts_by_user})
 
 # Get Posts by postId
-@post_routes.route('/<int:post_id>', methods['GET'])
+@post_routes.route('/<int:post_id>', methods=['GET'])
 def get_post_by_id(post_id):
   post_info = Post.query.get(post_id)
 
@@ -56,3 +56,10 @@ def get_post_by_id(post_id):
       'created_at': post_info.created_at,
       'updated_at': post_info.updated_at
     }
+
+  return jsonify({"Posts_all_details": post_all_info})
+
+# create new post
+@post_routes.route('/', methods=['POST'])
+@login_required
+def create_new_post():
