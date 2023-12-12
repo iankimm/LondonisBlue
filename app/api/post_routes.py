@@ -114,3 +114,47 @@ def delete_post_by_id(post_id):
 
   else:
     return jsonify({'message': "forbidden"}), 403
+
+
+# create post image
+@post_routes.route('/<int:post_id>/images', methods=["POST"])
+@login_required
+def create_post_image(post_id):
+  post = Post.query.get(post_id)
+
+  if not post:
+    return jsonify({"message": f"Post not found."}), 404
+
+  if post.user_id == current_user.id:
+    data = request.get_json()
+
+    new_image = PostImage(
+      image_url = data.get('image_url'),
+      post_id = post_id,
+      user_id = current_user.id
+    )
+
+    db.session.add(new_image)
+    db.session.commit()
+
+  return jsonify(new_image.to_dict())
+
+# delete post image
+@post_routes.route('/<int:post_id>/images/<int:image_id>', methods=['DELETE'])
+@login_required
+def delete_post_image(post_id, image_id):
+  post = Post.query.get(post_id)
+  image = PostImage.query.get(image_id)
+
+  if not post:
+    return jsonify({"message": f"Post not found."}), 404
+
+  if not image:
+    return jsonify({"message": f"Image not found."}), 404
+
+  if post.user_id == current_user.id:
+    db.session.delete(image)
+    db.session.commit()
+    return jsonify({"message": "Post Image deleted."}), 200
+
+  return jsonify({'message': "forbidden"}), 403

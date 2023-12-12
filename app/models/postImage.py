@@ -25,5 +25,7 @@ class PostImage(db.Model):
   def to_dict(self):
     return{
       'id': self.id,
-      'imageUrl': self.image_url
+      'imageUrl': self.image_url,
+      'user_id': self.user_id,
+      'post_id': self.post_id
     }
