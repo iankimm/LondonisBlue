@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, url_for, aobrt
-from app.models import User, Post, PostImage
+from app.models import User, Post, PostImage, db
 
 from app.forms.post_form import PostForm
 from flask_login import current_user, login_required
@@ -63,3 +63,54 @@ def get_post_by_id(post_id):
 @post_routes.route('/', methods=['POST'])
 @login_required
 def create_new_post():
+  data = request.get_json()
+
+  new_post = Post(
+    title = data.get('title'),
+    body = data.get('body'),
+    user_id = data.get('user_id')
+  )
+
+  db.session.add(new_post)
+  db.session.commit()
+
+  return jsonify(new_post.to_dict())
+
+# edit a post
+@post_routes.route('/<int:post_id>', methods=['PUT'])
+@login_required
+def edit_post_by_id(post_id):
+  post = Post.query.get(post_id)
+
+  if not post:
+    return jsonify({"message": "Post not found."}), 404
+
+  if post.user_id == current_user.id:
+    user_changes = request.get_json()
+
+    for [key, item] in user_changes.items():
+      setattr(post, key, item)
+
+    db.session.commit()
+
+    return post.to_dict()
+
+  else:
+    return jsonify({'message': "forbidden"}), 403
+
+# delete a post
+@post_routes.route('/<int:post_id>', methods=['DELETE'])
+@login_required
+def delete_post_by_id(post_id):
+  post = Post.query.get(post_id)
+
+  if not post:
+    return jsonify({"message": f"Post not found."}), 404
+
+  if post.user_id == current_user.id:
+    db.session.delete(post)
+    db.session.commit()
+    return jsonify({"message": "Post deleted."}), 200
+
+  else:
+    return jsonify({'message': "forbidden"}), 403
