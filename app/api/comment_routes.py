@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, session, request, url_for, aobrt
 from app.models import User, Post, Comment, PostImage, db
 
-from app.forms.post_form import PostForm
 from flask_login import current_user, login_required
 from sqlalchemy import func, desc
 from sqlalchemy.orm import joinedload
