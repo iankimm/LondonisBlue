@@ -5,10 +5,10 @@ from flask_login import current_user, login_required
 from sqlalchemy import func, desc
 from sqlalchemy.orm import joinedload
 
-comments_routes = Blueprint('comments', __name__)
+comment_routes = Blueprint('comments', __name__)
 
 # get all comments
-@comments_routes.route('/', methods=['GET'])
+@comment_routes.route('/', methods=['GET'])
 def get_all_comments():
   comments = Comment.query.all()
 
@@ -38,7 +38,7 @@ def get_all_comments():
 #     return jsonify({"message": f"Post not found."}), 404
 
 # create a new comment
-@comments_routes.route('/<int:post_id>/comments', methods=['POST'])
+@comment_routes.route('/<int:post_id>/comments', methods=['POST'])
 @login_required
 def create_post_comment(post_id):
   try:
@@ -73,7 +73,7 @@ def create_post_comment(post_id):
 
 # delete a comment
 
-@comments_routes.route('/<int:comment_id>', methods=["DELETE"])
+@comment_routes.route('/<int:comment_id>', methods=["DELETE"])
 @login_required
 def delete_comment_by_id(comment_id):
   current_comment = Comment.query.get(comment_id)
