@@ -34,8 +34,10 @@ def create_post_like(post_id):
   db.session.commit()
 
   return jsonify(new_postlike.to_dict())
+
+
 # delete a post like
-@postlike_routes('/<int:postlike_id>/likes', methods=['DELETE'])
+@postlike_routes.route('/<int:postlike_id>/likes', methods=['DELETE'])
 @login_required
 def delete_post_like(postlike_id):
   postlike = PostLike.query.get(postlike_id)
