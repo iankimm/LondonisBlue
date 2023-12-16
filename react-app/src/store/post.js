@@ -178,6 +178,24 @@ export const deleteAPostImage = (postId, imageId) => async (dispatch) => {
   }
 }
 
+// Get post images
+export const fetchImage = () => async (dispatch) => {
+  try{
+    const response = await fetch("/api/post/images", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const postimages = await response.json()
+      dispatch(getPostImage(postimages))
+      return postimages
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 const initialState = {
   allPosts: [],
   PostsByUserId: [],
