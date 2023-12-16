@@ -6,6 +6,7 @@ const CREATE_POST = 'post/CREATE_POST'
 const UPDATE_POST = 'post/UPDATE_POST'
 const DELETE_POST = 'post/DELETE_POST'
 
+const GET_POSTIMAGE = 'post/GET_POSTIMAGE'
 const CREATE_POSTIMAGE = 'post/CREATE_POSTIMAGE'
 const DELETE_POSTIMAGE = 'post/DELETE_POSTIMAGE'
 
@@ -43,6 +44,11 @@ const deletePostImage = (postId, imageId) => ({
   type: DELETE_POSTIMAGE,
   postId,
   imageId
+})
+
+const getPostImage = (postimages) => ({
+  type: GET_POSTIMAGE,
+  payload: postimages
 })
 
 // THUNKS
@@ -174,7 +180,8 @@ export const deleteAPostImage = (postId, imageId) => async (dispatch) => {
 
 const initialState = {
   allPosts: [],
-  PostsByUserId: []
+  PostsByUserId: [],
+  PostImages: []
 }
 
 export default function reducer(state = initialState, action) {
@@ -191,11 +198,62 @@ export default function reducer(state = initialState, action) {
         }
       }
     case GET_POST_BY_USER:
+      if (action.payload.UserAllPosts) {
+        let posts = {}
+        action.payload.UserAllPosts.forEach((post) => {
+          posts[post.id] = post
+        })
+        return {
+          ...state,
+          PostsByUserId: posts
+        }
+      }
     case CREATE_POST:
+      let newPosts = state.allPosts;
+      newPosts[action.payload.id] = action.payload;
+      return {
+        ...state,
+        allPosts: newPosts
+      }
     case UPDATE_POST:
+      let updatedPosts = state.allPosts;
+      updatedPosts[action.payload.id] = action.payload;
+      return {
+        ...state,
+        allPosts: updatedPosts
+      }
     case DELETE_POST:
+      let newPostsAfter = state.allPosts.filter(
+        (post) => post.id !== action.payload
+      )
+      return {
+        ...state,
+        allPosts: newPostsAfter
+      }
     case CREATE_POSTIMAGE:
+      let newPostImages = state.PostImages
+      newPostImages[action.payload.id] = action.payload
+      return {
+        ...state,
+        PostImages: newPostImages
+      }
     case DELETE_POSTIMAGE:
+      let newState = state.PostImages.filter((postimage) => postimage.id !== action.payload)
+      return {
+        ...state,
+        PostImages: newState
+      }
+    case GET_POSTIMAGE:
+      if (action.payload.PostImages) {
+        const postimages = {}
+        action.payload.PostImages.forEach((postimage) => {
+          postimages[postimage.id] = postimage;
+        })
+        return {
+          ...state,
+          PostImages : postimages
+        }
+      }
     default:
       return state
   }

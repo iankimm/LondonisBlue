@@ -157,3 +157,21 @@ def delete_post_image(post_id, image_id):
     return jsonify({"message": "Post Image deleted."}), 200
 
   return jsonify({'message': "forbidden"}), 403
+
+# get post image
+@post_routes.route('/images', methods=['GET'])
+def get_post_image():
+  postimages = PostImage.query.all()
+
+  allPostImages = []
+
+  for image in postimages:
+    image_data = {
+      'id' : image.id,
+      'image_url' : image.image_url,
+      'post_id': image.post_id,
+      'user_id': image.user_id
+    }
+    allPostImages.append(image_data)
+
+  return jsonify({"PostImages": allPostImages})
