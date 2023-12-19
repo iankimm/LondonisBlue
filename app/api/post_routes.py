@@ -37,7 +37,20 @@ def get_posts_by_user_id():
   if not posts_by_user:
     return jsonify({"message": "You have not created any posts"})
 
-  return jsonify({"UserAllPosts": posts_by_user})
+  allPostsByUser = []
+
+  for post in posts_by_user:
+    post_data = {
+      'id': post.id,
+      'title': post.title,
+      'body': post.body,
+      'user_id': post.user_id,
+      'created_at': post.created_at,
+      'updated_at': post.updated_at
+    }
+    allPostsByUser.append(post_data)
+
+  return jsonify({"UserAllPosts": allPostsByUser})
 
 # Get Posts by postId
 @post_routes.route('/<int:post_id>', methods=['GET'])

@@ -76,7 +76,7 @@ export const deleteACommentlike = (commentlikeId) => async (dispatch) => {
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case GET_COMMENTLIKE:
-      if (action.payload.Postlikes) {
+      if (action.payload.Commentlikes) {
         const commentlikes = {}
         action.payload.Commentlikes.forEach((commentlike) => {
           commentlikes[commentlike.id] = commentlike
