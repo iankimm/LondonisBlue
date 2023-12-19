@@ -58,6 +58,6 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'email': self.email,
-            'profileImageUrl': self.profileImageUrl,
+            'image_url': self.image_url,
             'created_at': self.created_at,
         }

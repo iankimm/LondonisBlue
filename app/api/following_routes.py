@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request, url_for, aobrt
+from flask import Blueprint, jsonify, session, request, url_for
 from app.models import User, Post, Follow, db
 
 from flask_login import current_user, login_required
@@ -27,7 +27,7 @@ def get_all_follows():
   return jsonify({"Follows": allFollows})
 
 # create a following
-@following_route.route('/<int:following_user_id/following>', methods=['POST'])
+@following_route.route('/<int:following_user_id>/following', methods=['POST'])
 @login_required
 def create_following(followed_user_id):
 
@@ -50,7 +50,7 @@ def create_following(followed_user_id):
 
 
 # delete a following
-@following_route.route('/<int:following_user_id/following>', methods=['DELETE'])
+@following_route.route('/<int:following_user_id>/following', methods=['DELETE'])
 @login_required
 def delete_following(followed_user_id):
   following_user_id = current_user.id

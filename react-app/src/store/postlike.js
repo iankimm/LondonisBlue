@@ -3,17 +3,17 @@ const CREATE_POSTLIKE = 'postlike/CREATE_POSTLIKE'
 const DELETE_POSTLIKE = 'postlike/DELETE_POSTLIKE'
 
 const getPostlike = (postlikes) => ({
-  type: GET_COMMENT,
+  type: GET_POSTLIKE,
   payload: postlikes
 })
 
 const createPostlike = (postlike) => ({
-  type: CREATE_COMMENT,
+  type: CREATE_POSTLIKE,
   payload: postlike
 })
 
 const deletePostlike = (postlikeId) => ({
-  type: DELETE_COMMENT,
+  type: DELETE_POSTLIKE,
   payload: postlikeId
 })
 
