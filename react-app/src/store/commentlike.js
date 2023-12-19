@@ -1,0 +1,96 @@
+const GET_COMMENTLIKE = 'postlike/GET_COMMENTLIKE'
+const CREATE_COMMENTLIKE = 'postlike/CREATE_COMMENTLIKE'
+const DELETE_COMMENTLIKE = 'postlike/DELETE_COMMENTLIKE'
+
+const getCommentlike = (commentlikes) => ({
+  type: GET_COMMENTLIKE,
+  payload: commentlikes
+})
+
+const createCommentlike = (commentlike) => ({
+  type: CREATE_COMMENTLIKE,
+  payload: commentlike
+})
+
+const deleteCommentlike = (commentlikeId) => ({
+  type: DELETE_COMMENTLIKE,
+  payload: commentlikeId
+})
+
+//thunks
+// Get all Commentlikes
+export const fetchCommentlike = () => async (dispatch) => {
+  try{
+    const response = await fetch("/api/commentlike", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const commentlikes = await response.json();
+      dispatch(getCommentlike(commentlikes));
+      return commentlikes
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Create a Commentlike
+export const createACommentlike = (commentlikeData) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/commentlike`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentlikeData),
+    });
+    if (response.ok) {
+      const commentlike = await response.json();
+      dispatch(createCommentlike(commentlike));
+      return commentlike;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Delete a commentlike
+export const deleteACommentlike = (commentlikeId) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/postlike/${commentlikeId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      dispatch(deleteCommentlike(commentlikeId));
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+export default function reducer(state = {}, action) {
+  switch (action.type) {
+    case GET_COMMENTLIKE:
+      if (action.payload.Postlikes) {
+        const commentlikes = {}
+        action.payload.Commentlikes.forEach((commentlike) => {
+          commentlikes[commentlike.id] = commentlike
+        })
+        return commentlikes
+      }
+    case CREATE_COMMENTLIKE:
+      let newCommentlike = state
+      newCommentlike[action.payload.id] = action.payload
+      return newCommentlike
+    case DELETE_COMMENTLIKE:
+      let newCommentlikeAfter = state.filter((commentlike) => commentlike.id !== action.payload)
+      return newCommentlikeAfter
+    default:
+      return state
+  }
+}

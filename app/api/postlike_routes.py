@@ -7,6 +7,24 @@ from sqlalchemy.orm import joinedload
 
 postlike_routes = Blueprint('postlikes', __name__)
 
+# get postlike
+@postlike_routes.route('/', methods=['GET'])
+def get_all_postlikes():
+  postlikes = PostLike.query.all()
+
+  allPostLikes = []
+
+  for postlike in postlikes:
+    data = {
+      'id': postlike.id,
+      'user_id': postlike.user_id,
+      'post_id': postlike.post_id
+    }
+
+    allPostLikes.append(data)
+
+  return jsonify({"Postlikes": allPostLikes})
+
 
 # create a post like
 @postlike_routes.route('/<int:post_id>/likes', methods=['POST'])
