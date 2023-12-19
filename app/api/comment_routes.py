@@ -71,6 +71,28 @@ def create_post_comment(post_id):
 
   return new_comment.to_dict()
 
+# update a comment
+@comment_routes.route('/<int:comment_id>/', methods=['PUT'])
+@login_required
+def edit_comment_by_id(comment_id):
+  comment = Comment.query.get(comment_id)
+
+  if not comment:
+    return jsonify({"message": "Comment not found."}), 404
+
+  if comment.user_id == current_user.id:
+    user_changes = request.get_json()
+
+    for [key, item] in user_changes.items():
+      setattr(comment, key, item)
+
+    db.session.commit()
+
+    return comment.to_dict()
+
+  else:
+    return jsonify({'message': "forbidden"}), 403
+
 # delete a comment
 
 @comment_routes.route('/<int:comment_id>', methods=["DELETE"])
