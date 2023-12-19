@@ -7,6 +7,25 @@ from sqlalchemy.orm import joinedload
 
 following_route = Blueprint('followings', __name__)
 
+# get follows
+@following_route.route('/', methods=['GET'])
+def get_all_follows():
+  follows = Follow.query.all()
+
+  allFollows = []
+
+  for follow in follows:
+    data = {
+      'id': follow.id,
+      'following_user_id': follow.following_user_id,
+      'followed_user_id': follow.followed_user_id,
+      'created_at': follow.created_at
+    }
+
+    allFollows.append(data)
+
+  return jsonify({"Follows": allFollows})
+
 # create a following
 @following_route.route('/<int:following_user_id/following>', methods=['POST'])
 @login_required

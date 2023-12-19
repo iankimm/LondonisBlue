@@ -1,6 +1,6 @@
-const GET_COMMENTLIKE = 'postlike/GET_COMMENTLIKE'
-const CREATE_COMMENTLIKE = 'postlike/CREATE_COMMENTLIKE'
-const DELETE_COMMENTLIKE = 'postlike/DELETE_COMMENTLIKE'
+const GET_COMMENTLIKE = 'commentlike/GET_COMMENTLIKE'
+const CREATE_COMMENTLIKE = 'commentlike/CREATE_COMMENTLIKE'
+const DELETE_COMMENTLIKE = 'commentlike/DELETE_COMMENTLIKE'
 
 const getCommentlike = (commentlikes) => ({
   type: GET_COMMENTLIKE,
@@ -59,7 +59,7 @@ export const createACommentlike = (commentlikeData) => async (dispatch) => {
 // Delete a commentlike
 export const deleteACommentlike = (commentlikeId) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/postlike/${commentlikeId}`, {
+    const response = await fetch(`/api/commentlike/${commentlikeId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

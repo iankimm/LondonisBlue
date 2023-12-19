@@ -7,7 +7,7 @@ from sqlalchemy.orm import joinedload
 
 commentlike_routes = Blueprint('commentlikes', __name__)
 
-# get postlike
+# get commentlike
 @commentlike_routes.route('/', methods=['GET'])
 def get_all_commentlikes():
   commentlikes = CommentLike.query.all()
@@ -18,17 +18,17 @@ def get_all_commentlikes():
     data = {
       'id': commentlike.id,
       'user_id': commentlike.user_id,
-      'post_id': commentlike.post_id
+      'comment_id': commentlike.comment_id
     }
 
     allCommentLikes.append(data)
 
   return jsonify({"Commentlikes": allCommentLikes})
 
-# create a post like
+# create a comment like
 @commentlike_routes.route('/<int:comment_id>/likes', methods=['POST'])
 @login_required
-def create_post_like(comment_id):
+def create_comment_like(comment_id):
   comment = Comment.query.get(comment_id)
   commentlikes = CommentLike.query.all()
 
@@ -40,7 +40,7 @@ def create_post_like(comment_id):
 
   for commentlike in commentlikes:
     if commentlike.user_id == current_user.id and commentlike.comment_id == comment_id:
-      return jsonify({"message": f"user liked this post already"}), 403
+      return jsonify({"message": f"user liked this comment already"}), 403
 
   new_commentlike = CommentLike(
     user_id = current_user.id,
@@ -53,11 +53,11 @@ def create_post_like(comment_id):
   return jsonify(new_commentlike.to_dict())
 
 
-# delete a post like
+# delete a comment like
 @commentlike_routes.route('/<int:commentlike_id>/likes', methods=['DELETE'])
 @login_required
-def delete_post_like(commentlike_id):
-  commentlike = PostLike.query.get(commentlike_id)
+def delete_comment_like(commentlike_id):
+  commentlike = CommentLike.query.get(commentlike_id)
 
   if not commentlike:
     return jsonify({"message": f"CommentLike not found."}), 404
