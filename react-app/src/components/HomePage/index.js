@@ -8,11 +8,13 @@ import { fetchCommentlike } from "../../store/commentlike";
 import { fetchPostByUserId } from "../../store/post";
 import { fetchPostlike } from "../../store/postlike";
 import { fetchFollows } from "../../store/following";
+import SinglePostTile from "../SinglePostTile";
 
 const HomePage = () => {
   const dispatch = useDispatch()
   const sessionUser = useSelector((state) => state?.session?.user)
-  const allPosts = useSelector((state) => state?.post?.allPosts)
+  const allPosts = useSelector((state) => Object.values(state?.post?.allPosts))
+  const allpostlikes = useSelector((state) => Object.values(state?.postlike))
 
   useEffect(() => {
     dispatch(fetchPost())
@@ -22,11 +24,14 @@ const HomePage = () => {
     dispatch(fetchPostByUserId())
     dispatch(fetchPostlike())
     dispatch(fetchFollows())
+
   }, [dispatch, sessionUser])
   return (
-    <>
-    hello
-    </>
+    <div className="HomePageContainer">
+      {allPosts && allPosts.map((post) => (
+        <SinglePostTile post = {post} like = {allpostlikes}/>
+      ))}
+    </div>
   )
 }
 
