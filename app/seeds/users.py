@@ -17,11 +17,11 @@ def seed_users():
 
     if len(foundUsers) == 0:
         demo = User(
-            username='Demo', firstName='Demo', lastName='User', email='demo@aa.io', password='password')
+            username='Demo', firstName='Demo', lastName='User', email='demo@aa.io', image_url= 'hello.jpg', password='password')
         marnie = User(
-            username='marnie', firstName='marnie', lastName='lasty', email='marnie@aa.io', password='password')
+            username='marnie', firstName='marnie', lastName='lasty', email='marnie@aa.io', image_url= 'hello.jpg', password='password')
         bobbie = User(
-            username='bobbie', firstName='bobbie', lastName='lasterson', email='bobbie@aa.io', password='password')
+            username='bobbie', firstName='bobbie', lastName='lasterson', email='bobbie@aa.io', image_url= 'hello.jpg', password='password')
 
         db.session.add(demo)
         db.session.add(marnie)
