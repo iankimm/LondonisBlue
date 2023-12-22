@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from '../src/components/HomePage'
 import PostDetailPage from "./components/PostDetailPage";
+import CreatePostPage from "./components/CreatePostPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/post/:postId">
             <PostDetailPage />
+          </Route>
+          <Route path="/createPost">
+            <CreatePostPage />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
