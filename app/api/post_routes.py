@@ -73,7 +73,7 @@ def get_post_by_id(post_id):
 
 # create new post
 @post_routes.route('/', methods=['POST'])
-@login_required
+# @login_required
 def create_new_post():
   data = request.get_json()
 
