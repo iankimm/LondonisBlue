@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import CommentList from '../CommentListTile';
 import DeletePostModal from './DeletePostModal';
+import EditPostModal from './EditPostModal';
 import OpenModalButton from '../OpenModalButton';
 
 const PostDetailPage = () => {
@@ -37,12 +38,19 @@ const PostDetailPage = () => {
       <div className = "DetailCreated">
         {selectedPost.created_at}
         {
-          selectedPost.user_id == sessionUser.id ?
+          sessionUser && selectedPost.user_id == sessionUser.id ?
+          <div>
+            <OpenModalButton
+              className="DeletePostButton"
+              buttonText="Edit Post"
+              modalComponent={<EditPostModal post = {selectedPost}/>}
+            />
             <OpenModalButton
               className="DeletePostButton"
               buttonText="Delete Post"
               modalComponent={<DeletePostModal postId = {postId}/>}
-            /> : ""
+            />
+            </div>: ""
         }
       </div>
 

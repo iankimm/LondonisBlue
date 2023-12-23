@@ -8,7 +8,7 @@ import { fetchCommentlike } from "../../store/commentlike";
 import { fetchPostByUserId } from "../../store/post";
 import { fetchPostlike } from "../../store/postlike";
 import { fetchFollows } from "../../store/following";
-import { fetchUsers } from "../../store/session";
+import { fetchUsers } from "../../store/user";
 import SinglePostTile from "../SinglePostTile";
 
 const HomePage = () => {
