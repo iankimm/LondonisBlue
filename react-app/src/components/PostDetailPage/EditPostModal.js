@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { editAPost } from "../../store/post";
+import { editAPost, createAPostImage, deleteAPostImage } from "../../store/post";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function EditPostModal({post}) {
@@ -10,11 +10,12 @@ function EditPostModal({post}) {
   const { closeModal } = useModal();
 
   const postImage = useSelector((state) => Object.values(state?.post?.PostImages)).find(image => image.post_id === post.id)
+  const sessionUser = useSelector((state) => state?.session?.user)
 
   //form data
   const [title, setTitle] = useState(post.title)
   const [body, setBody] = useState(post.body)
-  const [image, setImage] = useState(postImage.image_url)
+  const [image, setImage] = useState(postImage ? postImage.image_url : null)
   const [errors, setErrors] = useState({})
   const [isDisabled, setDisabled] = useState(true);
 
@@ -46,7 +47,7 @@ function EditPostModal({post}) {
     if(body.length && body.trim() === "") {
       errorCollector.body = bodyError1
     }
-    if(!validImgFormat.includes(image.slice(-4).toLowerCase())){
+    if(image && !validImgFormat.includes(image.slice(-4).toLowerCase())){
       errorCollector.wrongFormat = imageFormatError
     }
 
@@ -58,14 +59,38 @@ function EditPostModal({post}) {
       setDisabled(false)
     }
 
-  })
+  }, [title, body, image])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    dispatch(editAPost(post.id))
-    closeModal()
-    history.push('/')
+    try {
+      const editData = {
+        title: title,
+        body: body
+      }
+
+      const editedPost = await dispatch(editAPost(post.id, editData))
+
+      const imageData = {
+        image_url: image,
+        post_id: editedPost.id,
+        user_id: sessionUser.id
+      }
+
+      if(postImage && postImage.id) {
+        await dispatch(deleteAPostImage(post.id, postImage.id))
+      }
+
+      await dispatch(createAPostImage(post.id, imageData))
+
+      history.push(`/post/${editedPost.id}`)
+
+      closeModal()
+    }
+    catch (error) {
+      console.error("error editing post", error)
+    }
   }
 
   return (
