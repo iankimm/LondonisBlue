@@ -4,8 +4,12 @@ const PrintComment = ({comment, like}) => {
 
   return (
     <div className="PrintCommentContainer">
-      {comment.body}
-      {comment.created_at}
+      <div className="PrintBody">
+        {comment.body}
+      </div>
+      <div className="CreatedDate">
+        {comment.created_at}
+      </div>
 
       {/* commentlikes */}
       {

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import HomePage from '../src/components/HomePage'
 import PostDetailPage from "./components/PostDetailPage";
 import CreatePostPage from "./components/CreatePostPage";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/createPost">
             <CreatePostPage />
+          </Route>
+          <Route path="/ProfileEdit">
+            <ProfilePage />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
