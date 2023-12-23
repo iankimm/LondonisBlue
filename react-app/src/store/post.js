@@ -241,12 +241,8 @@ export default function reducer(state = initialState, action) {
         allPosts: updatedPosts
       }
     case DELETE_POST:
-      let newPostsAfter = state.allPosts.filter(
-        (post) => post.id !== action.payload
-      )
       return {
-        ...state,
-        allPosts: newPostsAfter
+        ...state
       }
     case CREATE_POSTIMAGE:
       let newPostImages = state.PostImages

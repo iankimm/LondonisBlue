@@ -61,8 +61,8 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li><Link style={buttonStyle} to="/ProfileEdit">Edit Profile</Link></li>
+            <li>Hello, {user.username}</li>
+            <li><Link style={buttonStyle} to="/ProfileEdit">Profile</Link></li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>

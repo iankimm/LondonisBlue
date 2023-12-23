@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import CommentList from '../CommentListTile';
+import DeletePostModal from './DeletePostModal';
+import OpenModalButton from '../OpenModalButton';
 
 const PostDetailPage = () => {
   const dispatch = useDispatch()
@@ -12,6 +14,7 @@ const PostDetailPage = () => {
 
   const { postId } = useParams()
 
+  const sessionUser = useSelector((state) => state?.session?.user)
   const allPosts = useSelector((state) => Object.values(state?.post?.allPosts))
   const allPostImages = useSelector((state) => Object.values(state?.post?.PostImages))
 
@@ -33,6 +36,14 @@ const PostDetailPage = () => {
       </div>
       <div className = "DetailCreated">
         {selectedPost.created_at}
+        {
+          selectedPost.user_id == sessionUser.id ?
+            <OpenModalButton
+              className="DeletePostButton"
+              buttonText="Delete Post"
+              modalComponent={<DeletePostModal postId = {postId}/>}
+            /> : ""
+        }
       </div>
 
       {/* comment list */}
