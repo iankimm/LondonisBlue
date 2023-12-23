@@ -6,7 +6,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
-	const sessionUser = useSelector(state => state.session.user);
+	const sessionUser = useSelector(state => state?.session?.user);
 
 	//button style
 	const buttonStyle = {
@@ -29,7 +29,7 @@ function Navigation({ isLoaded }){
 			<li>
 				<NavLink exact to="/"><img className="LogoImage"src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/190px-Chelsea_FC.svg.png" alt = "Home" /></NavLink>
 			</li>
-			{isLoaded && (
+			{sessionUser && (
 				<li>
 					<Link style={buttonStyle} to="/createPost">Create a Post</Link>
 				</li>
