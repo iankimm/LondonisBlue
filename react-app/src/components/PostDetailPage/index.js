@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
+import CommentList from '../CommentListTile';
 
 const PostDetailPage = () => {
   const dispatch = useDispatch()
@@ -33,6 +34,10 @@ const PostDetailPage = () => {
       <div className = "DetailCreated">
         {selectedPost.created_at}
       </div>
+
+      {/* comment list */}
+      <hr></hr>
+      <CommentList postId={postId} />
     </div>
   )
 }

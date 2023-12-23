@@ -30,12 +30,26 @@ def get_all_comments():
   })
 
 # get comments on post id
-# @comments_routes.route('/<int:post_id>', methods=['GET'])
-# def get_comments_by_post_id(post_id):
-#   post_info = Post.query.get(post_id)
+@comment_routes.route('/<int:post_id>', methods=['GET'])
+def get_comments_by_post_id(post_id):
+  comments = Comment.query.filter(Comment.post_id == post_id).all()
 
-#   if not post_info:
-#     return jsonify({"message": f"Post not found."}), 404
+  comments_data = []
+
+  for comment in comments:
+    comment_data = {
+      'id' : comment.id,
+      'body' : comment.body,
+      'user_id' : comment.user_id,
+      'post_id' : comment.post_id,
+      'created_at' : comment.created_at,
+      'updated_at' : comment.updated_at
+    }
+    comments_data.append(comment_data)
+
+  return jsonify({
+    "Comments": comments_data
+  })
 
 # create a new comment
 @comment_routes.route('/<int:post_id>/comments', methods=['POST'])
