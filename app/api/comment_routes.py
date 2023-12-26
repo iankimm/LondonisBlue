@@ -86,7 +86,7 @@ def create_post_comment(post_id):
   return new_comment.to_dict()
 
 # update a comment
-@comment_routes.route('/<int:comment_id>/', methods=['PUT'])
+@comment_routes.route('/<int:comment_id>', methods=['PUT'])
 @login_required
 def edit_comment_by_id(comment_id):
   comment = Comment.query.get(comment_id)

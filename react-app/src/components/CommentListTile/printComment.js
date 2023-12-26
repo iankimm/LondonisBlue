@@ -1,4 +1,11 @@
+import { useSelector } from "react-redux"
+import OpenModalButton from "../OpenModalButton"
+import DeleteCommentModal from "./DeleteCommentModal"
+import EditCommentModal from "./EditCommentModal"
+
 const PrintComment = ({comment, like}) => {
+
+  const sessionUser = useSelector((state) => state?.session?.user)
 
   let count = 0
 
@@ -21,7 +28,20 @@ const PrintComment = ({comment, like}) => {
       <i class="fa-regular fa-heart"></i> {count}
       </div>
 
-
+      {sessionUser.id === comment.user_id ?
+        <div>
+        <OpenModalButton
+          className="EditCommentButton"
+          buttonText="Edit Comment"
+          modalComponent={<EditCommentModal comment={comment}/>}
+        />
+        <OpenModalButton
+          className="DeleteCommentButton"
+          buttonText="Delete Comment"
+          modalComponent={<DeleteCommentModal commentId={comment.id}/>}
+        />
+        </div> : ""
+      }
     </div>
   )
 }

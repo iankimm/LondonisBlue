@@ -60,7 +60,6 @@ export const fetchCommentByPostId = (postId) => async (dispatch) => {
     if (response.ok) {
       const comments = await response.json();
       dispatch(getCommentByPostId(comments));
-      console.log('this is it',comments)
       return comments
     }
   } catch (error) {
@@ -102,6 +101,7 @@ export const editAComment = (commentId, commentData) => async (dispatch) => {
     if (response.ok) {
       const updatedComment = await response.json();
       dispatch(updateComment(updatedComment));
+      console.log('this is updatedComment', updatedComment)
       return updatedComment;
     }
   } catch (error) {
@@ -158,18 +158,21 @@ export default function reducer(state = initialState, action) {
         }
       }
     case CREATE_COMMENT:
-      let newComment = state
+      let newComment = state.allComments
       newComment[action.payload.id] = action.payload
       return {
         ...state,
         allComments: newComment
       }
     case UPDATE_COMMENT:
-      let updatedComment = state
+      let updatedComment = state.allComments
       updatedComment[action.payload.id] = action.payload
+      let updatedProComment = state.CurrentPostComments
+      updatedProComment[action.payload.id] = action.payload
       return {
         ...state,
-        allComments: updatedComment
+        allComments: updatedComment,
+        CurrentPostComments: updatedProComment
       }
     case DELETE_COMMENT:
       let newCommentsAfter = state.filter((comment) => comment.id !== action.payload)

@@ -16,8 +16,6 @@ const CommentList = ({postId}) => {
   const commentlikes = useSelector((state) => Object.values(state?.commentlike))
   const postComments = useSelector((state) => Object.values(state?.comment?.CurrentPostComments))
 
-
-
   useEffect(() => {
     dispatch(fetchCommentByPostId(postId))
   }, [dispatch])

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { deleteAPost } from "../../store/post";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { deleteAComment } from "../../store/comment";
 
-function DeletePostModal({postId}) {
+function DeleteCommentModal({commentId}) {
   const history = useHistory()
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
-    dispatch(deleteAPost(postId))
+    dispatch(deleteAComment(commentId))
     closeModal()
     history.push('/')
   }
@@ -19,11 +19,11 @@ function DeletePostModal({postId}) {
     <>
       <h1>Delete a Post</h1>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Yes (Delete Post)</button>
-        <button onClick={closeModal}>No (Keep Post)</button>
+        <button type="submit">Yes (Delete Comment)</button>
+        <button onClick={closeModal}>No (Keep Comment)</button>
       </form>
     </>
   );
 }
 
-export default DeletePostModal;
+export default DeleteCommentModal;
