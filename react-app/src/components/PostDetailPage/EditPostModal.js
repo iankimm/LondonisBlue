@@ -70,7 +70,15 @@ function EditPostModal({post}) {
         body: body
       }
 
-      const editedPost = await dispatch(editAPost(post.id, editData))
+      const isPostEdited = post.title !== title || post.body !== body
+
+      let editedPost
+
+      if (isPostEdited) {
+        editedPost = await dispatch(editAPost(post.id, editData))
+      } else {
+        editedPost = post
+      }
 
       const imageData = {
         image_url: image,
@@ -78,11 +86,15 @@ function EditPostModal({post}) {
         user_id: sessionUser.id
       }
 
-      if(postImage && postImage.id) {
-        await dispatch(deleteAPostImage(post.id, postImage.id))
-      }
+      const isImageChanged = postImage.image_url !== image
 
-      await dispatch(createAPostImage(post.id, imageData))
+      if (isImageChanged) {
+        if(postImage && postImage.id) {
+          await dispatch(deleteAPostImage(post.id, postImage.id))
+        }
+
+        await dispatch(createAPostImage(post.id, imageData))
+      }
 
       history.push(`/post/${editedPost.id}`)
 
