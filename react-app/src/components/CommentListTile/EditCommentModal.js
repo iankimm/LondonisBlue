@@ -51,7 +51,6 @@ function EditCommentModal({comment}) {
       }
 
       let editedComment = await dispatch(editAComment(comment.id, editData))
-      console.log('editedComment', editedComment)
 
       history.push(`/post/${editedComment.post_id}`)
 

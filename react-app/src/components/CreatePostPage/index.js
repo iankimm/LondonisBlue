@@ -69,21 +69,34 @@ function CreatePostPage() {
       user_id: sessionUser.id
     }
 
-    dispatch(createAPost(newPost))
-      .then(async (res) => {
-        const data = res
-        if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
-          const imageData = {
-            image_url: image,
-            post_id: res.id,
-            user_id: sessionUser.id
-          }
-          dispatch(createAPostImage(res.id, imageData))
-            .then(async (res) => {
-              history.push(`/post/${res.post_id}`)
-            })
-        }
-      })
+    const createdPost = await dispatch(createAPost(newPost))
+
+    if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
+      const imageData = {
+        image_url: image,
+        post_id: createdPost.id,
+        user_id: sessionUser.id
+      }
+
+      await dispatch(createAPostImage(createdPost.id, imageData))
+    }
+    history.push(`/post/${createdPost.id}`)
+
+    // dispatch(createAPost(newPost))
+    //   .then(async (res) => {
+    //     const data = res
+    //     if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
+    //       const imageData = {
+    //         image_url: image,
+    //         post_id: res.id,
+    //         user_id: sessionUser.id
+    //       }
+    //       dispatch(createAPostImage(res.id, imageData))
+    //         .then(async (res) => {
+    //           history.push(`/post/${res.post_id}`)
+    //         })
+    //     }
+    //   })
 
   }
 

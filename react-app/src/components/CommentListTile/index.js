@@ -9,6 +9,7 @@ import CreateCommentModal from "./CreateCommentModal";
 
 
 import OpenModalButton from "../OpenModalButton";
+import { fetchPost } from "../../store/post";
 
 
 const CommentList = ({postId}) => {
@@ -18,15 +19,19 @@ const CommentList = ({postId}) => {
   const commentlikes = useSelector((state) => Object.values(state?.commentlike))
   const postComments = useSelector((state) => Object.values(state?.comment?.CurrentPostComments))
 
+  const allPosts = useSelector((state) => Object.values(state?.post?.allPosts))
+  const selectedPost = allPosts.find(post => post.id == postId)
+
   useEffect(() => {
     dispatch(fetchCommentByPostId(postId))
+    dispatch(fetchPost())
   }, [dispatch])
 
   const commentsWithCurrentUser = postComments.some(comment => comment.user_id === sessionUser.id);
 
   return (
     <div className="CommentListContainer">
-      {!commentsWithCurrentUser && postId != sessionUser.id ?
+      {!commentsWithCurrentUser && selectedPost.user_id != sessionUser.id?
       <OpenModalButton
       className="CreateCommentButton"
       buttonText="Create Comment"

@@ -9,6 +9,7 @@ import DeletePostModal from './DeletePostModal';
 import EditPostModal from './EditPostModal';
 import OpenModalButton from '../OpenModalButton';
 import { fetchCommentByPostId } from '../../store/comment';
+import { fetchImage, fetchPost } from '../../store/post';
 
 const PostDetailPage = () => {
   const dispatch = useDispatch()
@@ -25,6 +26,8 @@ const PostDetailPage = () => {
 
   useEffect(() => {
     dispatch(fetchCommentByPostId(postId))
+    dispatch(fetchImage())
+    dispatch(fetchPost())
   },[dispatch])
 
   return (

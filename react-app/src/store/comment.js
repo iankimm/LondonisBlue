@@ -101,7 +101,6 @@ export const editAComment = (commentId, commentData) => async (dispatch) => {
     if (response.ok) {
       const updatedComment = await response.json();
       dispatch(updateComment(updatedComment));
-      console.log('this is updatedComment', updatedComment)
       return updatedComment;
     }
   } catch (error) {
