@@ -49,7 +49,6 @@ function CreateCommentModal({postId}) {
       }
 
       let createdComment = await dispatch(createAComment(postId, commentData))
-      console.log('created comment', createdComment)
 
       history.push(`/post/${postId}`)
 

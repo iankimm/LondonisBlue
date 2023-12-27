@@ -160,9 +160,12 @@ export default function reducer(state = initialState, action) {
     case CREATE_COMMENT:
       let newComment = state.allComments
       newComment[action.payload.id] = action.payload
+      let addedComment = state.CurrentPostComments
+      addedComment[action.payload.id] = action.payload
       return {
         ...state,
-        allComments: newComment
+        allComments: newComment,
+        CurrentPostComments: addedComment
       }
     case UPDATE_COMMENT:
       let updatedComment = state.allComments
@@ -175,10 +178,13 @@ export default function reducer(state = initialState, action) {
         CurrentPostComments: updatedProComment
       }
     case DELETE_COMMENT:
-      let newCommentsAfter = state.filter((comment) => comment.id !== action.payload)
+
+      const afterDelete = state.CurrentPostComments
+      delete afterDelete[action.payload]
+
       return {
         ...state,
-        allComments: newCommentsAfter
+        CurrentPostComments: afterDelete
       }
     default:
       return state

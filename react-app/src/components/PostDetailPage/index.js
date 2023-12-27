@@ -8,6 +8,7 @@ import CommentList from '../CommentListTile';
 import DeletePostModal from './DeletePostModal';
 import EditPostModal from './EditPostModal';
 import OpenModalButton from '../OpenModalButton';
+import { fetchCommentByPostId } from '../../store/comment';
 
 const PostDetailPage = () => {
   const dispatch = useDispatch()
@@ -21,6 +22,10 @@ const PostDetailPage = () => {
 
   const selectedPost = allPosts.find(post => post.id == postId)
   const selectedImages = allPostImages.filter(postImage => postImage.post_id == postId)
+
+  useEffect(() => {
+    dispatch(fetchCommentByPostId(postId))
+  },[dispatch])
 
   return (
     <div className = "PostDetailPageContainer">

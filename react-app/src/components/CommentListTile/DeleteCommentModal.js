@@ -12,12 +12,11 @@ function DeleteCommentModal({commentId}) {
   const handleSubmit = async (e) => {
     dispatch(deleteAComment(commentId))
     closeModal()
-    history.push('/')
   }
 
   return (
     <>
-      <h1>Delete a Post</h1>
+      <h1>Delete a Comment</h1>
       <form onSubmit={handleSubmit}>
         <button type="submit">Yes (Delete Comment)</button>
         <button onClick={closeModal}>No (Keep Comment)</button>
