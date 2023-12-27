@@ -69,9 +69,9 @@ export const fetchCommentByPostId = (postId) => async (dispatch) => {
 
 
 // Create a comment
-export const createAComment = (commentData) => async (dispatch) => {
+export const createAComment = (postId, commentData) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/comment`, {
+    const response = await fetch(`/api/comment/${postId}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

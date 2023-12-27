@@ -53,7 +53,7 @@ def get_comments_by_post_id(post_id):
 
 # create a new comment
 @comment_routes.route('/<int:post_id>/comments', methods=['POST'])
-@login_required
+# @login_required
 def create_post_comment(post_id):
   try:
     post_to_comment = (Post.query.options(
