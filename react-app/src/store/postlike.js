@@ -37,9 +37,9 @@ export const fetchPostlike = () => async (dispatch) => {
 }
 
 // Create a Postlike
-export const createAPostlike = (postlikeData) => async (dispatch) => {
+export const createAPostlike = (postId, postlikeData) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/postlike`, {
+    const response = await fetch(`/api/postlike/${postId}/likes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const createAPostlike = (postlikeData) => async (dispatch) => {
 // Delete a postlike
 export const deleteAPostlike = (postlikeId) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/postlike/${postlikeId}`, {
+    const response = await fetch(`/api/postlike//${postlikeId}/likes`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -88,8 +88,10 @@ export default function reducer(state = {}, action) {
       newPostlike[action.payload.id] = action.payload
       return newPostlike
     case DELETE_POSTLIKE:
-      let newPostlikeAfter = state.filter((postlike) => postlike.id !== action.payload)
-      return newPostlikeAfter
+      const afterDelete = state
+      delete afterDelete[action.payload]
+
+      return afterDelete
     default:
       return state
   }

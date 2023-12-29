@@ -3,6 +3,7 @@ import './singleposttile.css';
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import PostLikeComponent from './PostLikeComponent';
 
 const SinglePostTile = ({
   post,
@@ -31,7 +32,11 @@ const SinglePostTile = ({
         })
       }
       <div>
-      <i class="fa-regular fa-heart"></i> {count}
+      <i className="fa-regular fa-heart"></i> {count}
+      </div>
+      <div>
+        postlike component
+        <PostLikeComponent post={post} />
       </div>
 
     </div>
