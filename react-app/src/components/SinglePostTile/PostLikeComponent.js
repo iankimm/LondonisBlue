@@ -12,20 +12,10 @@ const PostLikeComponent = ({post}) => {
 
   const postlikes = useSelector((state) => Object.values(state?.postlike))
 
-  // const { setModalContent } = useModal();
-
-  // const [localIsClicked, setLocalIsClicked] = useState(false);
-  // const [isLikeLoaded, setIsLikeLoaded] = useState(true);
-
-  // let isClicked = postlikes.some((like) => like.post_id === post.id)
-
-  // const postLike = postlikes.find(like => like.post_id === post.id && like.user_id === sessionUser.id);
-
   const isLiked = postlikes.some((like) => like.post_id == post.id && like.user_id == sessionUser.id)
-  console.log(postlikes)
-
   const specificPostlike = postlikes.find((like) => like.post_id == post.id && like.user_id == sessionUser.id);
-  console.log(specificPostlike)
+
+  let count = 0
 
   const handleClick = async () => {
     console.log('isLike', isLiked)
@@ -40,40 +30,23 @@ const PostLikeComponent = ({post}) => {
       }
       await dispatch(createAPostlike(post.id, newPostLike))
     }
-
-
-    // if(!sessionUser) {
-    //   setLocalIsClicked(false)
-    //   return setModalContent(<LoginFormModal />)
-    // }
-
-    // if (isClicked) {
-    //   console.log('hello its clicked')
-    //   setIsLikeLoaded(false)
-    //   await dispatch(deleteAPostlike(postLike.id))
-    //   console.log('isclicked',isClicked)
-    //   setIsLikeLoaded(true)
-    // }
-    // else {
-    //   console.log('hello its unclicked')
-    //   const newPostLike = {
-    //     post_id: post.id
-    //   }
-    //   setIsLikeLoaded(false)
-    //   await dispatch(createAPostlike(newPostLike))
-    //   console.log('creation part isClicked', isClicked)
-    //   console.log('newPostLike', newPostLike)
-    //   setIsLikeLoaded(true)
-    // }
   }
 
   return(
     <div className="PostLikeContainer">
+
+      {/* post like counts */}
+      {
+        postlikes && postlikes.forEach((lk) => {
+          if(lk.post_id == post.id) count ++
+        })
+      }
+
       <i
       className={`fa${isLiked ? 's' : 'r'} fa-heart fa-lg`}
       onClick={handleClick}
       style={{ cursor: 'pointer', color: isLiked ? 'red' : 'black' }}
-    />
+    /> {count}
     </div>
   )
 

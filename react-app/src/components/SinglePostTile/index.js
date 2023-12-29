@@ -25,18 +25,8 @@ const SinglePostTile = ({
         {post.title}
       </Link>
 
-      {/* post like counts */}
-      {
-        like && like.forEach((lk) => {
-          if(lk.post_id == post.id) count ++
-        })
-      }
-      <div>
-      <i className="fa-regular fa-heart"></i> {count}
-      </div>
-      <div>
-        postlike component
-        <PostLikeComponent post={post} />
+      <div className="PostLikeButtonBox">
+      <PostLikeComponent post={post} />
       </div>
 
     </div>
