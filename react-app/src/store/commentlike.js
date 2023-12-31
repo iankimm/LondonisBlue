@@ -37,9 +37,9 @@ export const fetchCommentlike = () => async (dispatch) => {
 }
 
 // Create a Commentlike
-export const createACommentlike = (commentlikeData) => async (dispatch) => {
+export const createACommentlike = (commentId, commentlikeData) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/commentlike`, {
+    const response = await fetch(`/api/commentlike/${commentId}/likes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const createACommentlike = (commentlikeData) => async (dispatch) => {
 // Delete a commentlike
 export const deleteACommentlike = (commentlikeId) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/commentlike/${commentlikeId}`, {
+    const response = await fetch(`/api/commentlike/${commentlikeId}/likes`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -88,8 +88,10 @@ export default function reducer(state = {}, action) {
       newCommentlike[action.payload.id] = action.payload
       return newCommentlike
     case DELETE_COMMENTLIKE:
-      let newCommentlikeAfter = state.filter((commentlike) => commentlike.id !== action.payload)
-      return newCommentlikeAfter
+      const afterDelete = state
+      delete afterDelete[action.payload]
+
+      return afterDelete
     default:
       return state
   }

@@ -3,24 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
 
-import { createAPostlike, deleteAPostlike } from "../../store/postlike";
+import { createACommentlike, deleteACommentlike } from '../../store/commentlike';
 
-const PostLikeComponent = ({post}) => {
-
-
+const CommentLikeComponent = ({comment}) => {
 
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const { setModalContent } = useModal();
 
-  const postlikes = useSelector((state) => Object.values(state?.postlike))
+  const commentlikes = useSelector((state) => Object.values(state?.commentlike))
 
   let isLiked = 0;
-  let specificPostlike = 0;
+  let specificCommentlike = 0;
 
-  if(postlikes && sessionUser){
-    isLiked = postlikes.some((like) => like.post_id == post.id && like.user_id == sessionUser.id)
-    specificPostlike = postlikes.find((like) => like.post_id == post.id && like.user_id == sessionUser.id);
+  if(commentlikes && sessionUser){
+    isLiked = commentlikes.some((like) => like.comment_id == comment.id && like.user_id == sessionUser.id)
+    specificCommentlike = commentlikes.find((like) => like.comment_id == comment.id && like.user_id == sessionUser.id);
   }
 
 
@@ -32,13 +30,13 @@ const PostLikeComponent = ({post}) => {
     }
 
     if (isLiked) {
-      await dispatch(deleteAPostlike(specificPostlike.id))
+      await dispatch(deleteACommentlike(specificCommentlike.id))
     }
     else {
-      const newPostLike = {
-        post_id: post.id
+      const newCommentlike = {
+        comment_id: comment.id
       }
-      await dispatch(createAPostlike(post.id, newPostLike))
+      await dispatch(createACommentlike(comment.id, newCommentlike))
     }
   }
 
@@ -47,8 +45,8 @@ const PostLikeComponent = ({post}) => {
 
       {/* post like counts */}
       {
-        postlikes && postlikes.forEach((lk) => {
-          if(lk.post_id == post.id) count ++
+        commentlikes && commentlikes.forEach((lk) => {
+          if(lk.comment_id == comment.id) count ++
         })
       }
 
@@ -62,4 +60,4 @@ const PostLikeComponent = ({post}) => {
 
 }
 
-export default PostLikeComponent
+export default CommentLikeComponent

@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import OpenModalButton from "../OpenModalButton"
 import DeleteCommentModal from "./DeleteCommentModal"
 import EditCommentModal from "./EditCommentModal"
+import CommentLikeComponent from "./CommentLikeComponent"
 
 const PrintComment = ({comment, like}) => {
 
@@ -25,7 +26,7 @@ const PrintComment = ({comment, like}) => {
         })
       }
       <div>
-      <i class="fa-regular fa-heart"></i> {count}
+      <CommentLikeComponent comment={comment} />
       </div>
 
       {sessionUser.id === comment.user_id ?
