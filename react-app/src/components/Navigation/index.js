@@ -34,6 +34,11 @@ function Navigation({ isLoaded }){
 					<Link style={buttonStyle} to="/createPost">Create a Post</Link>
 				</li>
 			)}
+			{sessionUser && (
+				<li>
+					<Link style={buttonStyle} to="/follows">Follows</Link>
+				</li>
+			)}
 			{isLoaded && (
 				<li>
 					<ProfileButton user={sessionUser} />

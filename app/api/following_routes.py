@@ -50,12 +50,10 @@ def create_following(followed_user_id):
 
 
 # delete a following
-@following_route.route('/<int:following_user_id>/following', methods=['DELETE'])
-@login_required
-def delete_following(followed_user_id):
-  following_user_id = current_user.id
-
-  following = Follow.query.filter_by(followed_user_id, following_user_id)
+@following_route.route('/<int:followId>/following', methods=['DELETE'])
+# @login_required
+def delete_following(followId):
+  following = Follow.query.get(followId)
 
   if not following:
     return jsonify({"message": f"Follow not found."}), 404
