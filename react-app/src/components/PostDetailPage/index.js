@@ -10,6 +10,7 @@ import EditPostModal from './EditPostModal';
 import OpenModalButton from '../OpenModalButton';
 import { fetchCommentByPostId } from '../../store/comment';
 import { fetchImage, fetchPost } from '../../store/post';
+import AddFollowModal from './AddFollowModal';
 
 const PostDetailPage = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ const PostDetailPage = () => {
 
   const selectedPost = allPosts.find(post => post.id == postId)
   const selectedImages = allPostImages.filter(postImage => postImage.post_id == postId)
+
 
   useEffect(() => {
     dispatch(fetchCommentByPostId(postId))
@@ -58,7 +60,14 @@ const PostDetailPage = () => {
               buttonText="Delete Post"
               modalComponent={<DeletePostModal postId = {postId}/>}
             />
-            </div>: ""
+            </div>:
+            <div>
+              <OpenModalButton
+              className="AddFollowButton"
+              buttonText="Follow"
+              modalComponent={<AddFollowModal following_user_id = {selectedPost.user_id}/>}
+            />
+            </div>
         }
       </div>
 

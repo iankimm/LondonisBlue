@@ -17,11 +17,11 @@ def seed_users():
 
     if len(foundUsers) == 0:
         demo = User(
-            username='Demo', firstName='Demo', lastName='User', email='demo@aa.io', image_url= 'hello.jpg', password='password')
+            username='Demo', firstName='Demo', lastName='User', email='demo@aa.io', image_url= 'https://upload.wikimedia.org/wikipedia/commons/d/df/Enzo_Fern%C3%A1ndez_WC2022.jpg', password='password')
         marnie = User(
-            username='marnie', firstName='marnie', lastName='lasty', email='marnie@aa.io', image_url= 'hello.jpg', password='password')
+            username='marnie', firstName='marnie', lastName='lasty', email='marnie@aa.io', image_url= 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Raheem_Sterling_2018.jpg/220px-Raheem_Sterling_2018.jpg', password='password')
         bobbie = User(
-            username='bobbie', firstName='bobbie', lastName='lasterson', email='bobbie@aa.io', image_url= 'hello.jpg', password='password')
+            username='bobbie', firstName='bobbie', lastName='lasterson', email='bobbie@aa.io', image_url= 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mauricio_Pochettino_2016_%28cropped%29.jpg/220px-Mauricio_Pochettino_2016_%28cropped%29.jpg', password='password')
 
         db.session.add(demo)
         db.session.add(marnie)
