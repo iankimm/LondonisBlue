@@ -18,13 +18,6 @@ const PrintComment = ({comment, like}) => {
       <div className="CreatedDate">
         {comment.created_at}
       </div>
-
-      {/* commentlikes */}
-      {
-        like && like.forEach((lk) => {
-          if(lk.comment_id == comment.id) count ++
-        })
-      }
       <div>
       <CommentLikeComponent comment={comment} />
       </div>
