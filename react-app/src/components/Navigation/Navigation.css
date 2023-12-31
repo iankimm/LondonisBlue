@@ -5,3 +5,17 @@
 .hidden {
   display: none;
 }
+
+.PostButton {
+  display: 'inline-block';
+  padding: '10px 20px';
+  font-size: '16px';
+  font-weight: 'bold';
+  text-decoration: 'none';
+  text-align: 'center';
+  color: red;
+  background-color: blue;
+  border: '1px solid #007bff';
+  border-radius: '5px';
+  cursor: 'pointer';
+}

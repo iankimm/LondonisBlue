@@ -8,6 +8,7 @@ import { fetchCommentlike } from "../../store/commentlike";
 import { fetchPostByUserId } from "../../store/post";
 import { fetchPostlike } from "../../store/postlike";
 import { fetchFollows } from "../../store/following";
+import { fetchUsers } from "../../store/user";
 import SinglePostTile from "../SinglePostTile";
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
   const allpostlikes = useSelector((state) => Object.values(state?.postlike))
 
   useEffect(() => {
+    dispatch(fetchUsers())
     dispatch(fetchPost())
     dispatch(fetchImage())
     dispatch(fetchComment())

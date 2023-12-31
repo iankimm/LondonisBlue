@@ -28,7 +28,7 @@ def get_all_postlikes():
 
 # create a post like
 @postlike_routes.route('/<int:post_id>/likes', methods=['POST'])
-@login_required
+# @login_required
 def create_post_like(post_id):
   post = Post.query.get(post_id)
   postlikes = PostLike.query.all()

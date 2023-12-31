@@ -38,9 +38,9 @@ export const fetchFollows = () => async (dispatch) => {
 }
 
 // Create a follow
-export const createAFollow = (FollowData) => async (dispatch) => {
+export const createAFollow = (following_user_id, FollowData) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/following`, {
+    const response = await fetch(`/api/following/${following_user_id}/following`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const createAFollow = (FollowData) => async (dispatch) => {
 // Delete a follow
 export const deleteAFollow = (followId) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/following/${followId}`, {
+    const response = await fetch(`/api/following/${followId}/following`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -73,6 +73,7 @@ export const deleteAFollow = (followId) => async (dispatch) => {
     throw error;
   }
 }
+
 
 export default function reducer(state = {}, action) {
   switch (action.type) {
@@ -89,8 +90,10 @@ export default function reducer(state = {}, action) {
       newFollow[action.payload.id] = action.payload
       return newFollow
     case DELETE_FOLLOW:
-      let newFollowAfter = state.filter((follow) => follow.id !== action.payload)
-      return newFollowAfter
+      const afterDelete = state
+      delete afterDelete[action.payload]
+
+      return afterDelete
     default:
       return state
   }

@@ -1,26 +1,27 @@
-import "./createpostpage.css";
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
-import { createAPost, createAPostImage } from "../../store/post";
+import { useModal } from "../../context/Modal";
+import { editAPost, createAPostImage, deleteAPostImage } from "../../store/post";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function CreatePostPage() {
+function EditPostModal({post}) {
+  const history = useHistory()
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+
+  const postImage = useSelector((state) => Object.values(state?.post?.PostImages)).find(image => image.post_id === post.id)
   const sessionUser = useSelector((state) => state?.session?.user)
 
-  //dispatch & history
-  const dispatch = useDispatch()
-  const history = useHistory()
-
-  //form values
-  const [title, setTitle] = useState("")
-  const [body, setBody] = useState("")
-  const [image, setImage] = useState("")
-  const [isDisabled, setDisabled] = useState(false);
+  //form data
+  const [title, setTitle] = useState(post.title)
+  const [body, setBody] = useState(post.body)
+  const [image, setImage] = useState(postImage ? postImage.image_url : null)
   const [errors, setErrors] = useState({})
+  const [isDisabled, setDisabled] = useState(true);
 
-  //errorHandler
+  //error Collector
   const errorCollector = {}
+
   useEffect(() => {
     const validImgFormat = [
       ".jpg",
@@ -46,7 +47,7 @@ function CreatePostPage() {
     if(body.length && body.trim() === "") {
       errorCollector.body = bodyError1
     }
-    if(!validImgFormat.includes(image.slice(-4).toLowerCase())){
+    if(image && !validImgFormat.includes(image.slice(-4).toLowerCase())){
       errorCollector.wrongFormat = imageFormatError
     }
 
@@ -61,55 +62,57 @@ function CreatePostPage() {
   }, [title, body, image])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const newPost = {
-      title: title,
-      body: body,
-      user_id: sessionUser.id
-    }
+    try {
+      const editData = {
+        title: title,
+        body: body
+      }
 
-    const createdPost = await dispatch(createAPost(newPost))
+      const isPostEdited = post.title !== title || post.body !== body
 
-    if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
+      let editedPost
+
+      if (isPostEdited) {
+        editedPost = await dispatch(editAPost(post.id, editData))
+      } else {
+        editedPost = post
+      }
+
       const imageData = {
         image_url: image,
-        post_id: createdPost.id,
+        post_id: editedPost.id,
         user_id: sessionUser.id
       }
 
-      await dispatch(createAPostImage(createdPost.id, imageData))
+      const isImageChanged = postImage.image_url !== image
+
+      if (isImageChanged) {
+        if(postImage && postImage.id) {
+          await dispatch(deleteAPostImage(post.id, postImage.id))
+        }
+
+        await dispatch(createAPostImage(post.id, imageData))
+      }
+
+      history.push(`/post/${editedPost.id}`)
+
+      closeModal()
     }
-    history.push(`/post/${createdPost.id}`)
-
-    // dispatch(createAPost(newPost))
-    //   .then(async (res) => {
-    //     const data = res
-    //     if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
-    //       const imageData = {
-    //         image_url: image,
-    //         post_id: res.id,
-    //         user_id: sessionUser.id
-    //       }
-    //       dispatch(createAPostImage(res.id, imageData))
-    //         .then(async (res) => {
-    //           history.push(`/post/${res.post_id}`)
-    //         })
-    //     }
-    //   })
-
+    catch (error) {
+      console.error("error editing post", error)
+    }
   }
 
-
-  return(
-    <div className = "CreatePostPageContainer">
+  return (
+    <>
+      <h1>Edit a Post</h1>
       <form onSubmit={handleSubmit}>
-        <h1>Create a Post</h1>
-
-        {/* title */}
-        <li>
+        {/* Title */}
+        <div>
           <label>
-            title:
+            Title :
             <input
               type="text"
               value={title}
@@ -118,12 +121,11 @@ function CreatePostPage() {
             />
           </label>
           {errors && errors.title && <p className="errorDiv">{errors.title}</p>}
-        </li>
-
-        {/* body */}
-        <li>
+        </div>
+        {/* Body */}
+        <div>
           <label>
-            Body:
+            Body :
             <input
               type="text"
               value={body}
@@ -132,27 +134,27 @@ function CreatePostPage() {
             />
           </label>
           {errors && errors.body && <p className="errorDiv">{errors.body}</p>}
-        </li>
+        </div>
 
-        {/* image */}
-        <li>
+        {/* Post Image */}
+        <div>
           <label>
-            Post Image:
+            Post Image :
             <input
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
+              required
             />
           </label>
           {errors && errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
-        </li>
-
-        <button className="submitBtn" type="submit" disabled={isDisabled}>Finish</button>
-
+        </div>
+        <div>
+          <button type="submit" disabled={isDisabled}>Edit a Post</button>
+        </div>
       </form>
-    </div>
-  )
-
+    </>
+  );
 }
 
-export default CreatePostPage
+export default EditPostModal;

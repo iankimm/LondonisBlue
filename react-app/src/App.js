@@ -7,6 +7,9 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from '../src/components/HomePage'
 import PostDetailPage from "./components/PostDetailPage";
+import CreatePostPage from "./components/CreatePostPage";
+import ProfilePage from "./components/ProfilePage";
+import FollowPage from "./components/FollowPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +28,15 @@ function App() {
           </Route>
           <Route path="/post/:postId">
             <PostDetailPage />
+          </Route>
+          <Route path="/createPost">
+            <CreatePostPage />
+          </Route>
+          <Route path="/follows">
+            <FollowPage />
+          </Route>
+          <Route path="/ProfileEdit">
+            <ProfilePage />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

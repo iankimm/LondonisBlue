@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -9,6 +10,21 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
+  //button style
+	const buttonStyle = {
+    display: 'inline-block',
+    padding: '10px 20px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textDecoration: 'none',
+    textAlign: 'center',
+    color: '#fff',
+    backgroundColor: '#007bff', // Customize the background color
+    border: '1px solid #007bff', // Customize the border color
+    borderRadius: '5px', // Optional: Add rounded corners
+    cursor: 'pointer',
+  };
 
   const openMenu = () => {
     if (showMenu) return;
@@ -45,8 +61,8 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <li>Hello, {user.username}</li>
+            <li><Link style={buttonStyle} to="/ProfileEdit">Profile</Link></li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>

@@ -29,18 +29,19 @@ def get_all_follows():
 # create a following
 @following_route.route('/<int:following_user_id>/following', methods=['POST'])
 @login_required
-def create_following(followed_user_id):
+def create_following(following_user_id):
 
-  following_user_id = current_user.id
+  followed_user_id = current_user.id
 
-  following = Follow.query.filter_by(followed_user_id, following_user_id)
+  following = Follow.query.filter_by(followed_user_id=followed_user_id, following_user_id=following_user_id).first()
+  print('following', following)
 
   if following:
     return jsonify({"message": f"follow already exist."}), 404
 
   new_follow = Follow(
-    followed_user_id,
-    following_user_id
+    followed_user_id = current_user.id,
+    following_user_id = following_user_id
   )
 
   db.session.add(new_follow)
@@ -50,12 +51,10 @@ def create_following(followed_user_id):
 
 
 # delete a following
-@following_route.route('/<int:following_user_id>/following', methods=['DELETE'])
-@login_required
-def delete_following(followed_user_id):
-  following_user_id = current_user.id
-
-  following = Follow.query.filter_by(followed_user_id, following_user_id)
+@following_route.route('/<int:followId>/following', methods=['DELETE'])
+# @login_required
+def delete_following(followId):
+  following = Follow.query.get(followId)
 
   if not following:
     return jsonify({"message": f"Follow not found."}), 404

@@ -3,6 +3,7 @@ import './singleposttile.css';
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import PostLikeComponent from './PostLikeComponent';
 
 const SinglePostTile = ({
   post,
@@ -24,14 +25,8 @@ const SinglePostTile = ({
         {post.title}
       </Link>
 
-      {/* post like counts */}
-      {
-        like && like.forEach((lk) => {
-          if(lk.post_id == post.id) count ++
-        })
-      }
-      <div>
-      <i class="fa-regular fa-heart"></i> {count}
+      <div className="PostLikeButtonBox">
+      <PostLikeComponent post={post} />
       </div>
 
     </div>

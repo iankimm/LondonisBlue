@@ -1,11 +1,17 @@
 // constants
 const GET_COMMENT = 'comment/GET_COMMENT'
+const GET_COMMENTS_BY_POST_ID = 'comment/GET_COMMENTS_BY_POST_ID'
 const CREATE_COMMENT = 'comment/CREATE_COMMENT'
 const DELETE_COMMENT = 'comment/DELETE_COMMENT'
 const UPDATE_COMMENT = 'comment/UPDATE_COMMENT'
 
 const getComment = (comments) => ({
   type: GET_COMMENT,
+  payload: comments
+})
+
+const getCommentByPostId = (comments) => ({
+  type: GET_COMMENTS_BY_POST_ID,
   payload: comments
 })
 
@@ -43,11 +49,29 @@ export const fetchComment = () => async (dispatch) => {
   }
 }
 
+// Get All comments on Post Id
+export const fetchCommentByPostId = (postId) => async (dispatch) => {
+  try{
+    const response = await fetch(`/api/comment/${postId}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const comments = await response.json();
+      dispatch(getCommentByPostId(comments));
+      return comments
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 // Create a comment
-export const createAComment = (commentData) => async (dispatch) => {
+export const createAComment = (postId, commentData) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/comment`, {
+    const response = await fetch(`/api/comment/${postId}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +109,7 @@ export const editAComment = (commentId, commentData) => async (dispatch) => {
 }
 
 // Delete a comment
-export const deleteAPost = (commentId) => async (dispatch) => {
+export const deleteAComment = (commentId) => async (dispatch) => {
   try {
     const response = await fetch(`/api/comment/${commentId}`, {
       method: "DELETE",
@@ -101,8 +125,13 @@ export const deleteAPost = (commentId) => async (dispatch) => {
   }
 }
 
+const initialState = {
+  allComments: [],
+  CurrentPostComments: [],
+}
 
-export default function reducer(state = {}, action) {
+
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_COMMENT:
       if (action.payload.Comments) {
@@ -110,19 +139,52 @@ export default function reducer(state = {}, action) {
         action.payload.Comments.forEach((comment) => {
           comments[comment.id] = comment
         })
-        return comments
+        return {
+          ...state,
+        allComments: comments
+        }
+      }
+
+    case GET_COMMENTS_BY_POST_ID:
+      if (action.payload.Comments) {
+        const comments = {}
+        action.payload.Comments.forEach((comment) => {
+          comments[comment.id] = comment
+        })
+        return {
+          ...state,
+          CurrentPostComments: comments
+        }
       }
     case CREATE_COMMENT:
-      let newComment = state
+      let newComment = state.allComments
       newComment[action.payload.id] = action.payload
-      return newComment
+      let addedComment = state.CurrentPostComments
+      addedComment[action.payload.id] = action.payload
+      return {
+        ...state,
+        allComments: newComment,
+        CurrentPostComments: addedComment
+      }
     case UPDATE_COMMENT:
-      let updatedComment = state
+      let updatedComment = state.allComments
       updatedComment[action.payload.id] = action.payload
-      return updatedComment
+      let updatedProComment = state.CurrentPostComments
+      updatedProComment[action.payload.id] = action.payload
+      return {
+        ...state,
+        allComments: updatedComment,
+        CurrentPostComments: updatedProComment
+      }
     case DELETE_COMMENT:
-      let newCommentsAfter = state.filter((comment) => comment.id !== action.payload)
-      return newCommentsAfter
+
+      const afterDelete = state.CurrentPostComments
+      delete afterDelete[action.payload]
+
+      return {
+        ...state,
+        CurrentPostComments: afterDelete
+      }
     default:
       return state
   }

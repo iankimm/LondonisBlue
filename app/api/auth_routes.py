@@ -18,6 +18,26 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+@auth_routes.route('/users', methods=['GET'])
+def get_all_users():
+    users = User.query.all()
+
+    allUsers = []
+
+    for user in users:
+        user_data = {
+            'id': user.id,
+            'image_url': user.image_url,
+            'username': user.username,
+            'firstName': user.firstName,
+            'lastName': user.lastName,
+            'email': user.email,
+            'created_at': user.created_at,
+        }
+        allUsers.append(user_data)
+
+    return jsonify({"Users": allUsers})
+
 @auth_routes.route('/')
 def authenticate():
     """
