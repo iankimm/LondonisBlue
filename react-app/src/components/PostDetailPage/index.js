@@ -25,6 +25,8 @@ const PostDetailPage = () => {
   const selectedPost = allPosts.find(post => post.id == postId)
   const selectedImages = allPostImages.filter(postImage => postImage.post_id == postId)
 
+  const follows = useSelector((state) => Object.values(state?.follow).find(follow => follow.followed_user_id == sessionUser.id && follow.following_user_id == selectedPost.user_id))
+
 
   useEffect(() => {
     dispatch(fetchCommentByPostId(postId))
@@ -35,7 +37,17 @@ const PostDetailPage = () => {
   return (
     <div className = "PostDetailPageContainer">
       <div className = "DetailTitle">
-        {selectedPost.title}
+        <h1>{selectedPost.title}</h1>
+        {sessionUser && !follows && selectedPost.user_id != sessionUser.id ?
+        <div>
+          <OpenModalButton
+          className="AddFollowButton"
+          buttonText="Follow"
+          modalComponent={<AddFollowModal following_user_id = {selectedPost.user_id}/>}
+          />
+        </div>
+        :""
+        }
       </div>
       <div className = "DetailImage">
         {selectedImages && selectedImages.map((image) => (
@@ -60,14 +72,7 @@ const PostDetailPage = () => {
               buttonText="Delete Post"
               modalComponent={<DeletePostModal postId = {postId}/>}
             />
-            </div>:
-            <div>
-              <OpenModalButton
-              className="AddFollowButton"
-              buttonText="Follow"
-              modalComponent={<AddFollowModal following_user_id = {selectedPost.user_id}/>}
-            />
-            </div>
+            </div>:""
         }
       </div>
 

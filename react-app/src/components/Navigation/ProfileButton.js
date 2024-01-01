@@ -11,21 +11,6 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  //button style
-	const buttonStyle = {
-    display: 'inline-block',
-    padding: '10px 20px',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    textDecoration: 'none',
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#007bff', // Customize the background color
-    border: '1px solid #007bff', // Customize the border color
-    borderRadius: '5px', // Optional: Add rounded corners
-    cursor: 'pointer',
-  };
-
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -62,7 +47,7 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <li>Hello, {user.username}</li>
-            <li><Link style={buttonStyle} to="/ProfileEdit">Profile</Link></li>
+            <li><Link className="common-link-style" to="/ProfileEdit">Profile</Link></li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>

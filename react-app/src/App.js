@@ -10,6 +10,7 @@ import PostDetailPage from "./components/PostDetailPage";
 import CreatePostPage from "./components/CreatePostPage";
 import ProfilePage from "./components/ProfilePage";
 import FollowPage from "./components/FollowPage";
+import "./index.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="mainContainer">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -46,7 +47,20 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+
+      <div className="footer">
+      <hr></hr>
+        <div>
+          Ian H. Kim
+        </div>
+        <div>
+          Github : https://github.com/iankimm/
+        </div>
+        <div>
+          E-mail : iankimmmmm@gmail.com
+        </div>
+      </div>
+    </div>
   );
 }
 

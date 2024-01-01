@@ -18,18 +18,20 @@ const ProfilePage = () => {
 
   return (
     <div className="ProfilePageContainer">
-        <h1>{sessionUser.firstName}'s Profile</h1>
-        <div>
+        <h1 className="MainPageContain">{sessionUser.firstName}'s Profile</h1>
+        <div className="MainPageContainer">
           Name : {sessionUser.firstName}, {sessionUser.lastName}
         </div>
-        <div>
+        <div className="MainPageContainer">
           Username : {sessionUser.username}
         </div>
+        <br></br>
 
         {/* Personal Posts */}
         <div className="PersonalPosts">
           Personal Posts
         </div>
+        <hr></hr>
         {
           userPosts && userPosts.map((post) => (
             <SinglePostTile post = {post} like = {allpostlikes}/>

@@ -1,1 +1,20 @@
 /* TODO Add site wide styles */
+
+.mainContainer {
+  background-image: linear-gradient(to right, #034694, #6A7AB5);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 11px;
+  color: #e1eafd;
+  text-align: center;
+}
+
+body {
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+  background-image: linear-gradient(to right, #034694, #6A7AB5);
+}
