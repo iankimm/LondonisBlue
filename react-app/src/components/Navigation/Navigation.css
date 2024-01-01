@@ -14,8 +14,49 @@
   text-decoration: 'none';
   text-align: 'center';
   color: red;
-  background-color: blue;
+  background-color: #f5f6fa;
   border: '1px solid #007bff';
   border-radius: '5px';
   cursor: 'pointer';
+}
+
+.navigationBar {
+  overflow: hidden;
+  background-color: #353b48;
+  font-family: 'Raleway',sans-serif;
+}
+
+.navigationBar ul {
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+}
+
+.navigationBar li {
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+
+.navigationBar .right-side {
+  float: right;
+}
+
+.LogoImage {
+  max-width: 50%;
+  height: auto;
+}
+
+.common-link-style {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  color: #2f3640;
+  background-color: #f5f6fa;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
 }

@@ -4,14 +4,21 @@ import DeleteCommentModal from "./DeleteCommentModal"
 import EditCommentModal from "./EditCommentModal"
 import CommentLikeComponent from "./CommentLikeComponent"
 
+import "./commentlist.css";
+
 const PrintComment = ({comment, like}) => {
 
   const sessionUser = useSelector((state) => state?.session?.user)
+
+  const user = useSelector((state) => Object.values(state?.user)).find(user => user.id === comment.user_id)
 
   let count = 0
 
   return (
     <div className="PrintCommentContainer">
+
+      <img className="ProfileImage" src={`${user.image_url}`} alt="profile" />
+
       <div className="PrintBody">
         {comment.body}
       </div>

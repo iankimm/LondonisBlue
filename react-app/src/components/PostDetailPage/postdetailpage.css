@@ -1,0 +1,19 @@
+.DetailImageOne {
+  max-width: 50%;
+  height: auto;
+}
+
+.DetailCreated {
+  color : #DBA111;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.DetailTitle {
+  color : #DBA111;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.DetailBody {
+  color: #7f8fa6;
+  font-family: 'Open Sans', sans-serif;
+}

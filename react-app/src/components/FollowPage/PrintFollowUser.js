@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import OpenModalButton from "../OpenModalButton"
 import DeleteFollowModal from "./DeleteFollowModal"
+import "./Follow.css";
 
 const PrintFollowUser = ({follow}) => {
   const dispatch = useDispatch()
@@ -22,10 +23,10 @@ const PrintFollowUser = ({follow}) => {
 
   return (
     <div className="PrintFollowUser">
-      <div>
+      <div className="FollowUser">
         username : {username}
       </div>
-      <div>
+      <div className="FollowName">
         {firstName}, {lastName}
       </div>
       { follow &&
