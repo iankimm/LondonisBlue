@@ -18,6 +18,7 @@ const PrintComment = ({comment, like}) => {
     <div className="PrintCommentContainer">
 
       <img className="ProfileImage" src={`${user.image_url}`} alt="profile" />
+      {" "}{user.firstName}
 
       <div className="PrintBody">
         {comment.body}

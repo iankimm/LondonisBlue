@@ -24,7 +24,7 @@ const SinglePostTile = ({
   return (
     <div className = "tileContainer">
 
-      <img className="ProfileImage" src={`${user.image_url}`} alt="profile" />
+      <img className="ProfileImage" src={`${user.image_url}`} alt="profile" /> {"  "}
 
       <Link to={`/post/${post?.id}`}>
         {post.title}

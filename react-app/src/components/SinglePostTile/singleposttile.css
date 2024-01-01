@@ -3,3 +3,12 @@
   color: #DBA111;
   font-family: "Great Vibes", cursive;
 }
+
+.ProfileImage {
+  max-height : 50px;
+  max-width: 50px;
+}
+
+.tileContainer {
+  color: #DBA111;
+}
