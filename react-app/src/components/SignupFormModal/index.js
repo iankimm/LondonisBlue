@@ -30,6 +30,7 @@ function SignupFormModal() {
 		const lastNameError1 = "Last name must include alphabetic characters"
 		const userNameError1 = "User name must include alphabetic characters"
 		const emailError = "Email must include alphabetic characters"
+		const emailError2 = "Invalid Email Address"
 
 
     if(firstname.length && firstname.trim() === "") {
@@ -44,6 +45,9 @@ function SignupFormModal() {
 		if(email.length && email.trim() === "") {
       errorCollector.email = emailError
     }
+		if (!email || !/\S+@\S+\.\S+/.test(email)) {
+			errorCollector.email = emailError2;
+		}
     if(!validImgFormat.includes(profile.slice(-4).toLowerCase())){
       errorCollector.profile = imageFormatError
     }
@@ -61,7 +65,10 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
+			const firstName = firstname
+			const lastName = lastname
+			const image_url = profile
+			const data = await dispatch(signUp(username, email, password, firstName, lastName, image_url));
 			if (data) {
 				setErrors(data);
 			} else {

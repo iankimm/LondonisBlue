@@ -147,7 +147,7 @@ function CreatePostPage() {
           {errors && errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
         </li>
 
-        <button className="submitBtn" type="submit" disabled={isDisabled}>Finish</button>
+        <button className="CreatePostButton" type="submit" disabled={isDisabled}>Create Post</button>
 
       </form>
     </div>

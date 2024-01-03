@@ -33,5 +33,6 @@ class Post(db.Model):
       'id': self.id,
       'title': self.title,
       'body': self.body,
-      'created_at': self.created_at
+      'created_at': self.created_at,
+      'user_id': self.user_id
     }

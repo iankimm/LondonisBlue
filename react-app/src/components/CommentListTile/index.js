@@ -27,11 +27,14 @@ const CommentList = ({postId}) => {
     dispatch(fetchPost())
   }, [dispatch])
 
-  const commentsWithCurrentUser = postComments.some(comment => comment.user_id === sessionUser.id);
+  let commentsWithCurrentUser = 0;
+  if(sessionUser) {
+    commentsWithCurrentUser = postComments.some(comment => comment.user_id === sessionUser.id);
+  }
 
   return (
     <div className="CommentListContainer">
-      {!commentsWithCurrentUser && selectedPost.user_id != sessionUser.id?
+      {selectedPost && sessionUser && !commentsWithCurrentUser && selectedPost.user_id != sessionUser.id?
       <OpenModalButton
       className="CreateCommentButton"
       buttonText="Create Comment"
