@@ -39,9 +39,9 @@ def starting_with_spaces(form, field):
 
 
 class SignUpForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired(), username_exists, starting_with_spaces])
+    username = StringField('username', validators=[DataRequired(), username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists])
-    firstName = StringField('firstName', validators=[DataRequired(), starting_with_spaces])
-    lastName = StringField('lastName', validators=[DataRequired(), starting_with_spaces])
-    profileImageUrl = StringField('profileImageUrl', validators=[starting_with_spaces])
+    firstName = StringField('firstName', validators=[DataRequired()])
+    lastName = StringField('lastName', validators=[DataRequired()])
+    image_url = StringField('image_url', validators=[DataRequired()])
     password = StringField('password', validators=[DataRequired()])

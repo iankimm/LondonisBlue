@@ -1,12 +1,16 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import OpenModalButton from "../OpenModalButton"
 import DeleteCommentModal from "./DeleteCommentModal"
 import EditCommentModal from "./EditCommentModal"
 import CommentLikeComponent from "./CommentLikeComponent"
 
 import "./commentlist.css";
+import { useEffect } from "react"
+import { fetchUsers } from "../../store/user"
 
 const PrintComment = ({comment, like}) => {
+
+  const dispatch = useDispatch()
 
   const sessionUser = useSelector((state) => state?.session?.user)
 
@@ -14,11 +18,17 @@ const PrintComment = ({comment, like}) => {
 
   let count = 0
 
+  useEffect(() => {
+    dispatch(fetchUsers())
+  }, [dispatch])
+
   return (
     <div className="PrintCommentContainer">
 
-      <img className="ProfileImage" src={`${user.image_url}`} alt="profile" />
-      {" "}{user.firstName}
+      {user && (<img className="ProfileImage" src={`${user.image_url}`} alt="profile" />)
+
+      }{"  "}
+      {user && (user.firstName)}
 
       <div className="PrintBody">
         {comment.body}
@@ -30,7 +40,7 @@ const PrintComment = ({comment, like}) => {
       <CommentLikeComponent comment={comment} />
       </div>
 
-      {sessionUser.id === comment.user_id ?
+      {sessionUser && sessionUser.id === comment.user_id ?
         <div>
         <OpenModalButton
           className="EditCommentButton"

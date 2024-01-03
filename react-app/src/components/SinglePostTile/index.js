@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import PostLikeComponent from './PostLikeComponent';
+import { fetchUsers } from '../../store/user';
 
 const SinglePostTile = ({
   post,
@@ -17,14 +18,19 @@ const SinglePostTile = ({
 
   // get user
   const user = useSelector((state) => Object.values(state?.user)).find(user => user.id === post.user_id)
+
   useEffect(() => {
+    dispatch(fetchUsers())
     setLocalIsClicked(isClicked)
   }, [dispatch, isClicked])
 
   return (
     <div className = "tileContainer">
 
-      <img className="ProfileImage" src={`${user.image_url}`} alt="profile" /> {"  "}
+      {user && (<img className="ProfileImage" src={`${user.image_url}`} alt="profile" />)
+
+      }{"  "}
+
 
       <Link to={`/post/${post?.id}`}>
         {post.title}
