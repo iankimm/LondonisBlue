@@ -11,6 +11,8 @@ import OpenModalButton from '../OpenModalButton';
 import { fetchCommentByPostId, fetchComment } from '../../store/comment';
 import { fetchImage, fetchPost } from '../../store/post';
 import AddFollowModal from './AddFollowModal';
+import { fetchFollows } from '../../store/following';
+import { fetchCommentlike } from '../../store/commentlike';
 
 const PostDetailPage = () => {
   const dispatch = useDispatch()
@@ -39,6 +41,8 @@ const PostDetailPage = () => {
 
 
   useEffect(() => {
+    dispatch(fetchCommentlike())
+    dispatch(fetchFollows())
     dispatch(fetchPost())
     dispatch(fetchCommentByPostId(postId))
     dispatch(fetchImage())
