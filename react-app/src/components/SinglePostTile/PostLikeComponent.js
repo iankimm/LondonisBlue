@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
+import './singleposttile.css';
 
 import { createAPostlike, deleteAPostlike } from "../../store/postlike";
 
@@ -17,6 +18,11 @@ const PostLikeComponent = ({post}) => {
 
   let isLiked = 0;
   let specificPostlike = 0;
+  let checkPost = false;
+
+  if(sessionUser && (post.user_id == sessionUser.id)){
+    checkPost = true;
+  }
 
   if(postlikes && sessionUser){
     isLiked = postlikes.some((like) => like.post_id == post.id && like.user_id == sessionUser.id)
@@ -55,7 +61,7 @@ const PostLikeComponent = ({post}) => {
       <i
       className={`fa${isLiked ? 's' : 'r'} fa-heart fa-lg`}
       onClick={handleClick}
-      style={{ cursor: 'pointer', color: isLiked ? 'red' : 'black' }}
+      style={{ cursor: checkPost ? 'auto' : 'pointer', color: isLiked ? 'red' : 'black' }}
     /> {count}
     </div>
   )
