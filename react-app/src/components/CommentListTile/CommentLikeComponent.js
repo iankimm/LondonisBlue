@@ -15,6 +15,11 @@ const CommentLikeComponent = ({comment}) => {
 
   let isLiked = 0;
   let specificCommentlike = 0;
+  let checkComment = false;
+
+  if(sessionUser && (comment.user_id == sessionUser.id)){
+    checkComment = true;
+  }
 
   if(commentlikes && sessionUser){
     isLiked = commentlikes.some((like) => like.comment_id == comment.id && like.user_id == sessionUser.id)
@@ -53,7 +58,7 @@ const CommentLikeComponent = ({comment}) => {
       <i
       className={`fa${isLiked ? 's' : 'r'} fa-heart fa-lg`}
       onClick={handleClick}
-      style={{ cursor: 'pointer', color: isLiked ? 'red' : 'black' }}
+      style={{ cursor: checkComment ? 'auto' : 'pointer', color: isLiked ? 'red' : 'black' }}
     /> {count}
     </div>
   )

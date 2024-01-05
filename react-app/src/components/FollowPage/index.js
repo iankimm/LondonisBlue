@@ -21,6 +21,7 @@ const FollowPage = () => {
           <PrintFollowUser follow={follow}/>
         ))
       }
+      {!followsByUser && (<p>No Follows Yet!</p>)}
     </div>
   )
 }
