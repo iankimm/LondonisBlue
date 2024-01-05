@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import PostLikeComponent from './PostLikeComponent';
 import { fetchUsers } from '../../store/user';
+import { fetchFollows } from '../../store/following';
+import FollowComponent from './FollowComponent';
 
 const SinglePostTile = ({
   post,
@@ -21,6 +23,7 @@ const SinglePostTile = ({
 
   useEffect(() => {
     dispatch(fetchUsers())
+    dispatch(fetchFollows())
     setLocalIsClicked(isClicked)
   }, [dispatch, isClicked])
 
@@ -38,6 +41,7 @@ const SinglePostTile = ({
 
       <div className="PostLikeButtonBox">
       <PostLikeComponent post={post} />
+      <FollowComponent post={post} />
       </div>
 
     </div>
