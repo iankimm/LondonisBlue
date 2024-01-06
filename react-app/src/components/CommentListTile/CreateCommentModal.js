@@ -4,6 +4,9 @@ import { useModal } from "../../context/Modal";
 import { createAComment } from "../../store/comment";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+const bodyError1 = "Body name must include alphabetic characters"
+const bodyError2 = "Body must be longer 3 characters"
+
 function CreateCommentModal({postId}) {
   const history = useHistory()
   const dispatch = useDispatch();
@@ -17,11 +20,10 @@ function CreateCommentModal({postId}) {
   const [isDisabled, setDisabled] = useState(true);
 
   //error Collector
-  const errorCollector = {}
+  let errorCollector = {}
 
-  useEffect(() => {
-    const bodyError1 = "Body name must include alphabetic characters"
-    const bodyError2 = "Body must be longer 3 characters"
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
     if(body.length < 3) {
       errorCollector.body = bodyError2
@@ -29,33 +31,25 @@ function CreateCommentModal({postId}) {
     if(body.length && body.trim() === "") {
       errorCollector.body = bodyError1
     }
-
-    setErrors(errorCollector)
-    if (Object.keys(errorCollector).length > 0) {
-      setDisabled(true)
+    if(Object.keys(errorCollector).length) {
+      setErrors(errorCollector)
+      return
     }
     else {
-      setDisabled(false)
-    }
+      try {
+        const commentData = {
+          body: body
+        }
 
-  }, [body])
+        let createdComment = await dispatch(createAComment(postId, commentData))
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+        history.push(`/post/${postId}`)
 
-    try {
-      const commentData = {
-        body: body
+        closeModal()
       }
-
-      let createdComment = await dispatch(createAComment(postId, commentData))
-
-      history.push(`/post/${postId}`)
-
-      closeModal()
-    }
-    catch (error) {
-      console.error("error editing post", error)
+      catch (error) {
+        console.error("error creating post", error)
+      }
     }
   }
 
@@ -79,7 +73,7 @@ function CreateCommentModal({postId}) {
         </div>
 
         <div>
-          <button type="submit" disabled={isDisabled}>Create a Comment</button>
+          <button type="submit">Create a Comment</button>
         </div>
       </form>
     </>

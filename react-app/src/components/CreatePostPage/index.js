@@ -5,6 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 import { createAPost, createAPostImage } from "../../store/post";
 
+const imageFormatError = "Image must be .jpg, jpeg, or .png format"
+const titleError1 = "Title name must include alphabetic characters"
+const titleError2 = "Title must be longer 3 characters"
+const bodyError1 = "Body name must include alphabetic characters"
+const bodyError2 = "Body must be longer 3 characters"
+
+const validImgFormat = [
+  ".jpg",
+  '.png',
+  '.jpeg'
+]
+
 function CreatePostPage() {
   const sessionUser = useSelector((state) => state?.session?.user)
 
@@ -20,19 +32,11 @@ function CreatePostPage() {
   const [errors, setErrors] = useState({})
 
   //errorHandler
-  const errorCollector = {}
-  useEffect(() => {
-    const validImgFormat = [
-      ".jpg",
-      '.png',
-      '.jpeg'
-    ]
+  let errorCollector = {}
 
-    const imageFormatError = "Image must be .jpg, jpeg, or .png format"
-    const titleError1 = "Title name must include alphabetic characters"
-    const titleError2 = "Title must be longer 3 characters"
-    const bodyError1 = "Body name must include alphabetic characters"
-    const bodyError2 = "Body must be longer 3 characters"
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    errorCollector = {}
 
     if(title.length < 3) {
       errorCollector.title = titleError2
@@ -49,55 +53,30 @@ function CreatePostPage() {
     if(!validImgFormat.includes(image.slice(-4).toLowerCase())){
       errorCollector.wrongFormat = imageFormatError
     }
-
-    setErrors(errorCollector)
-    if (Object.keys(errorCollector).length > 0) {
-      setDisabled(true)
+    if(Object.keys(errorCollector).length) {
+      setErrors(errorCollector)
+      return
     }
     else {
-      setDisabled(false)
-    }
-
-  }, [title, body, image])
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const newPost = {
-      title: title,
-      body: body,
-      user_id: sessionUser.id
-    }
-
-    const createdPost = await dispatch(createAPost(newPost))
-
-    if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
-      const imageData = {
-        image_url: image,
-        post_id: createdPost.id,
+      const newPost = {
+        title: title,
+        body: body,
         user_id: sessionUser.id
       }
 
-      await dispatch(createAPostImage(createdPost.id, imageData))
+      const createdPost = await dispatch(createAPost(newPost))
+
+      if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
+        const imageData = {
+          image_url: image,
+          post_id: createdPost.id,
+          user_id: sessionUser.id
+        }
+
+        await dispatch(createAPostImage(createdPost.id, imageData))
+      }
+      history.push(`/post/${createdPost.id}`)
     }
-    history.push(`/post/${createdPost.id}`)
-
-    // dispatch(createAPost(newPost))
-    //   .then(async (res) => {
-    //     const data = res
-    //     if(image && (image.endsWith('.jpg') || image.endsWith('.png') || image.endsWith('.jpeg'))){
-    //       const imageData = {
-    //         image_url: image,
-    //         post_id: res.id,
-    //         user_id: sessionUser.id
-    //       }
-    //       dispatch(createAPostImage(res.id, imageData))
-    //         .then(async (res) => {
-    //           history.push(`/post/${res.post_id}`)
-    //         })
-    //     }
-    //   })
-
   }
 
 
@@ -117,7 +96,7 @@ function CreatePostPage() {
               required
             />
           </label>
-          {errors && errors.title && <p className="errorDiv">{errors.title}</p>}
+          {errors.title && <p className="errorDiv">{errors.title}</p>}
         </li>
 
         {/* body */}
@@ -131,7 +110,7 @@ function CreatePostPage() {
               required
             />
           </label>
-          {errors && errors.body && <p className="errorDiv">{errors.body}</p>}
+          {errors.body && <p className="errorDiv">{errors.body}</p>}
         </li>
 
         {/* image */}
@@ -144,10 +123,10 @@ function CreatePostPage() {
               onChange={(e) => setImage(e.target.value)}
             />
           </label>
-          {errors && errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
+          {errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
         </li>
 
-        <button className="CreatePostButton" type="submit" disabled={isDisabled}>Create Post</button>
+        <button className="CreatePostButton" type="submit">Create Post</button>
 
       </form>
     </div>

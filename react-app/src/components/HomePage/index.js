@@ -31,7 +31,7 @@ const HomePage = () => {
   return (
     <div className="HomePageContainer">
       {allPosts && allPosts.map((post) => (
-        <SinglePostTile post = {post} like = {allpostlikes}/>
+        post.id ? <SinglePostTile post={post} like={allpostlikes} /> : null
       ))}
     </div>
   )
