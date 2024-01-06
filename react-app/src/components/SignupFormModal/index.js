@@ -3,6 +3,20 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+
+const validImgFormat = [
+	".jpg",
+	'.png',
+	'.jpeg'
+]
+
+const imageFormatError = "Image must be .jpg, jpeg, or .png format"
+const firstNameError1 = "First name must include alphabetic characters"
+const lastNameError1 = "Last name must include alphabetic characters"
+const userNameError1 = "User name must include alphabetic characters"
+const emailError = "Email must include alphabetic characters"
+const emailError2 = "Invalid Email Address"
+
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
@@ -17,23 +31,13 @@ function SignupFormModal() {
 	const [isDisabled, setDisabled] = useState(false);
 
 
-	const errorCollector = {}
-  useEffect(() => {
-    const validImgFormat = [
-      ".jpg",
-      '.png',
-      '.jpeg'
-    ]
+	let errorCollector = {}
 
-    const imageFormatError = "Image must be .jpg, jpeg, or .png format"
-    const firstNameError1 = "First name must include alphabetic characters"
-		const lastNameError1 = "Last name must include alphabetic characters"
-		const userNameError1 = "User name must include alphabetic characters"
-		const emailError = "Email must include alphabetic characters"
-		const emailError2 = "Invalid Email Address"
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		errorCollector = {}
 
-
-    if(firstname.length && firstname.trim() === "") {
+		if(firstname.length && firstname.trim() === "") {
       errorCollector.firstname = firstNameError1
     }
 		if(lastname.length && lastname.trim() === "") {
@@ -51,33 +55,27 @@ function SignupFormModal() {
     if(!validImgFormat.includes(profile.slice(-4).toLowerCase())){
       errorCollector.profile = imageFormatError
     }
-
     setErrors(errorCollector)
-    if (Object.keys(errorCollector).length > 0) {
-      setDisabled(true)
+		if(Object.keys(errorCollector).length) {
+      setErrors(errorCollector)
+      return
     }
-    else {
-      setDisabled(false)
-    }
-
-  }, [firstname, lastname, profile, email])
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (password === confirmPassword) {
-			const firstName = firstname
-			const lastName = lastname
-			const image_url = profile
-			const data = await dispatch(signUp(username, email, password, firstName, lastName, image_url));
-			if (data) {
-				setErrors(data);
+		else {
+			if (password === confirmPassword) {
+				const firstName = firstname
+				const lastName = lastname
+				const image_url = profile
+				const data = await dispatch(signUp(username, email, password, firstName, lastName, image_url));
+				if (data) {
+					setErrors(data);
+				} else {
+					closeModal();
+				}
 			} else {
-				closeModal();
+				setErrors([
+					"Confirm Password field must be the same as the Password field",
+				]);
 			}
-		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
 		}
 	};
 
@@ -177,7 +175,7 @@ function SignupFormModal() {
 				</div>
 
 				<div>
-					<button type="submit" disabled={isDisabled}>Sign Up</button>
+					<button type="submit">Sign Up</button>
 				</div>
 
 			</form>
