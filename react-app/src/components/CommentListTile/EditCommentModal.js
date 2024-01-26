@@ -62,8 +62,8 @@ function EditCommentModal({comment}) {
   }
 
   return (
-    <>
-      <h1>Edit a Comment</h1>
+    <div className="EditComModal">
+      <span className="editcomTitle"><h1>Edit a Comment</h1></span>
       <form onSubmit={handleSubmit}>
 
         {/* Body */}
@@ -81,10 +81,10 @@ function EditCommentModal({comment}) {
         </div>
 
         <div>
-          <button type="submit" disabled={isDisabled}>Edit a Comment</button>
+          <button className="button-link"  type="submit" disabled={isDisabled}>Edit a Comment</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -30,9 +30,13 @@ const HomePage = () => {
   }, [dispatch, sessionUser])
   return (
     <div className="HomePageContainer">
-      {allPosts && allPosts.map((post) => (
-        post.id ? <SinglePostTile post={post} like={allpostlikes} /> : null
-      ))}
+      <br></br>
+      {allPosts && allPosts.map((post, index) => (
+    <>
+        {post.id ? <SinglePostTile post={post} like={allpostlikes} /> : null}
+        {index !== allPosts.length - 1 && <br />}
+    </>
+))}
     </div>
   )
 }

@@ -33,9 +33,11 @@ const SinglePostTile = ({
       {user && (<img className="ProfileImage" src={`${user.image_url}`} alt="profile" />)
 
       }{"  "}
+      <span className="usernamee">{user.username}</span>
 
+      <br></br>
 
-      <Link to={`/post/${post?.id}`}>
+      <Link className="main-post"to={`/post/${post?.id}`}>
         {post.title}
       </Link>
 
@@ -43,7 +45,7 @@ const SinglePostTile = ({
       <PostLikeComponent post={post} />
       <FollowComponent post={post} />
       </div>
-
+      <hr></hr>
     </div>
   )
 

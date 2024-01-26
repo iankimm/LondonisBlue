@@ -1,19 +1,35 @@
-.DetailImageOne {
-  max-width: 50%;
-  height: auto;
-}
-
-.DetailCreated {
-  color : #DBA111;
-  font-family: 'Helvetica Neue', sans-serif;
-}
-
 .DetailTitle {
-  color : #DBA111;
-  font-family: 'Helvetica Neue', sans-serif;
+  color: #c66b3d;
 }
 
 .DetailBody {
-  color: #7f8fa6;
-  font-family: 'Open Sans', sans-serif;
+  color: #26495c;
+}
+
+.dates {
+  color: rgb(253, 172, 172)
+}
+
+.DetailImageOne {
+  max-width: 400px;
+  width: 400px;
+  border: 2px solid #c66b3d;
+}
+
+.editmodal {
+  text-align: center;
+  border: 2px solid #c66b3d;
+}
+
+.editPostTitle {
+  color : #c66b3d;
+}
+
+.deletepostTitle {
+  color : #c66b3d;
+}
+
+.deleteModal {
+  text-align: center;
+  border: 2px solid #c66b3d;
 }

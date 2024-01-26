@@ -1,14 +1,20 @@
-.tileContainer a {
-  text-decoration: none;
-  color: #DBA111;
-  font-family: "Great Vibes", cursive;
-}
-
 .ProfileImage {
-  max-height : 50px;
-  max-width: 50px;
+  width: 30px;
+  border-radius: 15px;
 }
 
-.tileContainer {
-  color: #DBA111;
+span {
+  margin: 5px 0;
+}
+
+.FollowShowContainer {
+  display: block;
+  width: 60px;
+  background-color: #26495c;
+  color: white;
+}
+
+.usernamee {
+  color:#c66b3d;
+  font-family: 'Lucida Sans', Arial, sans-serif;
 }

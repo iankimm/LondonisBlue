@@ -1,62 +1,50 @@
-.profile-dropdown {
-  position: absolute;
+.button-to {
+  list-style: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+
 }
 
 .hidden {
-  display: none;
+  display:none;
 }
 
-.PostButton {
-  display: 'inline-block';
-  padding: '10px 20px';
-  font-size: '16px';
-  font-weight: 'bold';
-  text-decoration: 'none';
-  text-align: 'center';
-  color: red;
-  background-color: #f5f6fa;
-  border: '1px solid #007bff';
-  border-radius: '5px';
-  cursor: 'pointer';
-}
-
-.navigationBar {
-  overflow: hidden;
-  background-color: #353b48;
-  font-family: 'Raleway',sans-serif;
-}
-
-.navigationBar ul {
+.profile-dropdown {
   list-style: none;
-  margin: 0;
-  padding: 16px;
-}
-
-.navigationBar li {
-  display: inline-block;
-  float: left;
-  margin-right: 10px;
-}
-
-.navigationBar .right-side {
-  float: right;
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background-color: #c4a35a;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
 }
 
 .LogoImage {
-  max-width: 50%;
-  height: auto;
+  max-width: 100px;
 }
 
-.common-link-style {
+.navigationBar {
+  background-color: #6b7b8c;
+}
+
+.button-link {
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 3px 3px;
+  background-color: #c66b3d;
+  color: #fff;
   text-decoration: none;
-  text-align: center;
-  color: #2f3640;
-  background-color: #f5f6fa;
-  border: 1px solid black;
   border-radius: 5px;
-  cursor: pointer;
+}
+
+.titlee {
+  color: white;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
 }

@@ -15,13 +15,13 @@ function DeleteCommentModal({commentId}) {
   }
 
   return (
-    <>
-      <h1>Delete a Comment</h1>
+    <div className="DeleteModal">
+      <span className="deleteTitle"><h1>Delete a Comment</h1></span>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Yes (Delete Comment)</button>
-        <button onClick={closeModal}>No (Keep Comment)</button>
+        <div><button className="button-link" type="submit">Yes (Delete Comment)</button></div>
+        <button className="button-link" onClick={closeModal}>No (Keep Comment)</button>
       </form>
-    </>
+    </div>
   );
 }
 

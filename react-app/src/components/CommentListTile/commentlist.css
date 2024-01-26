@@ -1,14 +1,41 @@
+.ProfileImage {
+  width: 30px;
+  border-radius: 15px;
+}
+
+.printFirst {
+  color:#c66b3d;
+  font-family: 'Lucida Sans', Arial, sans-serif;
+}
+
 .PrintBody {
-  font-family: 'Open sans', sans-serif;
-  color: #D1D3D4;
+  font-family: 'Source Sans Pro', sans-serif;
+  color : #1c709c;
 }
 
-.CreatedDate {
-  font-family: 'Helvetica Neue', sans-serif;
-  color : #DBA111;
+.editcomTitle {
+  color : #c66b3d;
 }
 
-.PrintCommentContainer {
-  font-family: 'Helvetica Neue', sans-serif;
-  color : #DBA111;
+.EditComModal {
+  text-align: center;
+  border: 2px solid #c66b3d;
+}
+
+.DeleteModal {
+  text-align: center;
+  border: 2px solid #c66b3d;
+}
+
+.deleteTitle {
+  color : #c66b3d;
+}
+
+.createcomModal {
+  text-align: center;
+  border: 2px solid #c66b3d;
+}
+
+.createcomTitle {
+  color : #c66b3d;
 }

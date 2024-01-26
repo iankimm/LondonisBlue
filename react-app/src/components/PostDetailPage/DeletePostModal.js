@@ -16,13 +16,13 @@ function DeletePostModal({postId}) {
   }
 
   return (
-    <>
-      <h1>Delete a Post</h1>
+    <div className="deleteModal">
+      <span className="deletepostTitle"><h1>Delete a Post</h1></span>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Yes (Delete Post)</button>
-        <button onClick={closeModal}>No (Keep Post)</button>
+        <div><button className="button-link" type="submit">Yes (Delete Post)</button></div>
+        <button className="button-link" onClick={closeModal}>No (Keep Post)</button>
       </form>
-    </>
+    </div>
   );
 }
 

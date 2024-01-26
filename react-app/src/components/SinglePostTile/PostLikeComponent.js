@@ -49,7 +49,7 @@ const PostLikeComponent = ({post}) => {
   }
 
   return(
-    <div className="PostLikeContainer">
+    <span className="PostLikeContainer">
 
       {/* post like counts */}
       {
@@ -63,7 +63,7 @@ const PostLikeComponent = ({post}) => {
       onClick={handleClick}
       style={{ cursor: checkPost ? 'auto' : 'pointer', color: isLiked ? 'red' : 'black' }}
     /> {count}
-    </div>
+    </span>
   )
 
 }

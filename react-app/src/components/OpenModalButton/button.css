@@ -1,0 +1,8 @@
+.button-link {
+  display: inline-block;
+  padding: 3px 3px;
+  background-color: #c66b3d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}

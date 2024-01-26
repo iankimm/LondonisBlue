@@ -106,8 +106,8 @@ function EditPostModal({post}) {
   }
 
   return (
-    <>
-      <h1>Edit a Post</h1>
+    <div className="editmodal">
+      <span className="editPostTitle"><h1>Edit a Post</h1></span>
       <form onSubmit={handleSubmit}>
         {/* Title */}
         <div>
@@ -150,10 +150,10 @@ function EditPostModal({post}) {
           {errors && errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
         </div>
         <div>
-          <button type="submit" disabled={isDisabled}>Edit a Post</button>
+          <button className="button-link" type="submit" disabled={isDisabled}>Edit a Post</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
