@@ -10,20 +10,9 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className="navigationBar">
-			<ul>
-				<li>
-					<NavLink exact to="/"><img className="LogoImage"src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/190px-Chelsea_FC.svg.png" alt = "Home" /></NavLink>
-				</li>
-				{sessionUser && (
-					<li>
-						<Link className="common-link-style" to="/createPost">Create a Post</Link>
-					</li>
-				)}
-				{sessionUser && (
-					<li>
-						<Link className="common-link-style" to="/follows">Follows</Link>
-					</li>
-				)}
+			<NavLink exact to="/"><img className="LogoImage"src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/190px-Chelsea_FC.svg.png" alt = "Home" /></NavLink>
+			<span className="titlee">London is Blue</span>
+			<ul className="button-to">
 				{isLoaded && (
 					<li>
 						<ProfileButton user={sessionUser} />

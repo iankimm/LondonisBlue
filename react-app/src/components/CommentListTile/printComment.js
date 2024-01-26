@@ -28,13 +28,13 @@ const PrintComment = ({comment, like}) => {
       {user && (<img className="ProfileImage" src={`${user.image_url}`} alt="profile" />)
 
       }{"  "}
-      {user && (user.firstName)}
+      <span className="printFirst">{user && (user.firstName)}</span>
 
       <div className="PrintBody">
         {comment.body}
       </div>
       <div className="CreatedDate">
-        {comment.created_at}
+        Posted on : {comment.created_at}
       </div>
       <div>
       <CommentLikeComponent comment={comment} />

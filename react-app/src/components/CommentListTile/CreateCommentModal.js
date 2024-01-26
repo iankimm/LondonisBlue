@@ -54,8 +54,8 @@ function CreateCommentModal({postId}) {
   }
 
   return (
-    <>
-      <h1>Create a Comment</h1>
+    <div className="createcomModal">
+      <span className="createcomTitle"><h1>Create a Comment</h1></span>
       <form onSubmit={handleSubmit}>
 
         {/* Body */}
@@ -73,10 +73,10 @@ function CreateCommentModal({postId}) {
         </div>
 
         <div>
-          <button type="submit">Create a Comment</button>
+          <button className="button-link" type="submit">Create a Comment</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

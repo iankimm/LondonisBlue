@@ -19,7 +19,7 @@ const FollowPage = () => {
 
   return (
     <div className="FollowPageContainer">
-      Follows
+      <span className="followingName"><h1>Follows</h1></span>
       {
         followsByUser && followsByUser.map((follow) => (
           <PrintFollowUser follow={follow}/>

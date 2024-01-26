@@ -78,7 +78,7 @@ const PostDetailPage = () => {
         )}
         {selectedPost && (
           <div className = "DetailCreated">
-          {selectedPost.created_at}
+          <span className="dates">{selectedPost.created_at}</span>
           {
             selectedPost && sessionUser && selectedPost.user_id == sessionUser.id ?
             <div>

@@ -41,15 +41,20 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <i class="fa-solid fa-user"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>Hello, {user.username}</li>
-            <li><Link className="common-link-style" to="/ProfileEdit">Profile</Link></li>
+            <li><Link className="button-link" to="/ProfileEdit">Profile</Link></li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+						<Link className="button-link" to="/createPost">Create a Post</Link>
+					</li>
+          <li>
+						<Link className="button-link" to="/follows">Follows</Link>
+					</li>
+            <li>
+              <button className="button-link" onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (

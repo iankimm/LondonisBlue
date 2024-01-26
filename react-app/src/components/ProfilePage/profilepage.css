@@ -1,13 +1,14 @@
-.PersonalPosts {
-  color : #D1D3D4;
-  font-family: 'Verdana', sans-serif;
-}
-
 .MainPageContainer {
-  font-family: 'Helvetica Neue', sans-serif;
-  color : #DBA111;
+  color :#c4a35a;
+  font-weight: bold;
 }
 
 .MainPageContain {
-  color: #D1D3D4;
+  color : #c66b3d;
+}
+
+.PersonalPosts {
+  font-family: 'Lucida Handwriting', 'cursive', sans-serif;
+  color: rgb(204, 203, 203);
+  text-shadow: 2px 2px 2px #000;
 }

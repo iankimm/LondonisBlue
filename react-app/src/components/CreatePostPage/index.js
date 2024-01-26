@@ -83,12 +83,12 @@ function CreatePostPage() {
   return(
     <div className = "CreatePostPageContainer">
       <form onSubmit={handleSubmit}>
-        <h1>Create a Post</h1>
+        <span className="createPostt"><h1>Create a Post</h1></span>
 
         {/* title */}
         <li>
           <label>
-            title:
+            TITLE :
             <input
               type="text"
               value={title}
@@ -102,7 +102,7 @@ function CreatePostPage() {
         {/* body */}
         <li>
           <label>
-            Body:
+            BODY :
             <input
               type="text"
               value={body}
@@ -116,7 +116,7 @@ function CreatePostPage() {
         {/* image */}
         <li>
           <label>
-            Post Image:
+            IMAGE :
             <input
               type="text"
               value={image}
@@ -126,7 +126,7 @@ function CreatePostPage() {
           {errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
         </li>
 
-        <button className="CreatePostButton" type="submit">Create Post</button>
+        <button className="button-link" type="submit">Create Post</button>
 
       </form>
     </div>

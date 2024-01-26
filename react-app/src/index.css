@@ -5,12 +5,37 @@
   bottom: 0;
   width: 100%;
   font-size: 11px;
-  color: #e1eafd;
+  color: #26495c;
   text-align: center;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(to right, #034694, #6A7AB5);
+  background-color: #e6e6dc;
+}
+
+/* button */
+.button-link {
+  display: inline-block;
+  padding: 3px 3px;
+  background-color: #c66b3d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.main-post {
+  text-decoration: none;
+  font-family: 'Raleway',sans-serif;
+  font-size: 20px;
+  color: black;
+}
+
+.main-post:hover {
+  font-size: 22px;
+}
+
+.button-link:hover {
+  cursor: pointer;
 }

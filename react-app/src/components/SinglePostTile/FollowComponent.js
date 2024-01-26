@@ -17,12 +17,12 @@ const FollowComponent = ({post}) => {
   }
 
   return(
-    <div className="FollowShowContainer">
+    <span className="FollowShowContainer">
       {
         followed ?
-        <div>followed</div> : ""
+        <>followed</> : ""
       }
-    </div>
+    </span>
   )
 
 }

@@ -1,14 +1,8 @@
-.FollowUser {
-  font-family: "Libre Baskerville", serif;
-  color: #dcdde1;
-}
-
-.FollowName {
-  font-family: "Libre Baskerville", serif;
-  color: #dcdde1;
+.followingName {
+  color : #c66b3d;
 }
 
 .FollowPageContainer {
-  font-family: "Great Vibes", cursive;
-  color: #DBA111;
+  color: #26495c;
+  font-weight: bold;
 }

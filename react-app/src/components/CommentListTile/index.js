@@ -43,6 +43,7 @@ const CommentList = ({postId}) => {
       {postComments.map((comment) => (
         <PrintComment comment={comment} like={commentlikes} />
       ))}
+      <hr></hr>
     </div>
   )
 }
