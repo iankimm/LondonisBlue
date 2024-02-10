@@ -1,5 +1,5 @@
 .DetailTitle {
-  color: #c66b3d;
+  color: #0B60B0;
 }
 
 .DetailBody {
@@ -7,29 +7,31 @@
 }
 
 .dates {
-  color: rgb(253, 172, 172)
+  color: rgb(44, 170, 253)
 }
 
 .DetailImageOne {
   max-width: 400px;
   width: 400px;
-  border: 2px solid #c66b3d;
+  border: 2px solid #40A2D8;
 }
 
 .editmodal {
   text-align: center;
-  border: 2px solid #c66b3d;
+  border: 2px solid #40A2D8;
 }
 
 .editPostTitle {
-  color : #c66b3d;
+  color : #0B60B0;
 }
 
 .deletepostTitle {
-  color : #c66b3d;
+  color : #0B60B0;
 }
 
 .deleteModal {
   text-align: center;
-  border: 2px solid #c66b3d;
+  padding: 15px;
+  border: 2px solid #0B60B0;
+  box-sizing: border-box;
 }
