@@ -16,7 +16,7 @@ function DeleteCommentModal({commentId}) {
 
   return (
     <div className="DeleteModal">
-      <span className="deleteTitle"><h1>Delete a Comment</h1></span>
+      <span className="deleteTitle"><h1>  Delete a Comment  </h1></span>
       <form onSubmit={handleSubmit}>
         <div><button className="button-link" type="submit">Yes (Delete Comment)</button></div>
         <button className="button-link" onClick={closeModal}>No (Keep Comment)</button>

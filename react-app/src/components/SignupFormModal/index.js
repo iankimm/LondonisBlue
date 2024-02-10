@@ -17,6 +17,8 @@ const userNameError1 = "User name must include alphabetic characters"
 const emailError = "Email must include alphabetic characters"
 const emailError2 = "Invalid Email Address"
 
+
+
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
@@ -87,7 +89,7 @@ function SignupFormModal() {
 				</ul>
 				<div>
 					<label>
-						Email :
+						Email<br />
 						<input
 							type="text"
 							value={email}
@@ -100,7 +102,7 @@ function SignupFormModal() {
 
 				<div>
 					<label>
-						Username :
+						Username<br />
 						<input
 							type="text"
 							value={username}
@@ -113,7 +115,7 @@ function SignupFormModal() {
 
 				<div>
 					<label>
-						First Name :
+						First Name<br />
 						<input
 							type="text"
 							value={firstname}
@@ -126,7 +128,7 @@ function SignupFormModal() {
 
 				<div>
 					<label>
-						Last Name :
+						Last Name<br />
 						<input
 							type="text"
 							value={lastname}
@@ -139,7 +141,7 @@ function SignupFormModal() {
 
 				<div>
 					<label>
-						Profile Image :
+						Profile Image<br />
 						<input
 							type="text"
 							value={profile}
@@ -152,7 +154,7 @@ function SignupFormModal() {
 
 				<div>
 					<label>
-						Password :
+						Password<br />
 						<input
 							type="password"
 							value={password}
@@ -164,7 +166,7 @@ function SignupFormModal() {
 
 				<div>
 					<label>
-						Confirm Password :
+						Confirm Password<br />
 						<input
 							type="password"
 							value={confirmPassword}

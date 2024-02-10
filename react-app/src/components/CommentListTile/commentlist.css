@@ -4,7 +4,7 @@
 }
 
 .printFirst {
-  color:#c66b3d;
+  color:#0B60B0;
   font-family: 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -14,28 +14,30 @@
 }
 
 .editcomTitle {
-  color : #c66b3d;
+  color : #0B60B0;
 }
 
 .EditComModal {
   text-align: center;
-  border: 2px solid #c66b3d;
+  border: 2px solid #0B60B0;
 }
 
 .DeleteModal {
   text-align: center;
-  border: 2px solid #c66b3d;
+  padding: 15px;
+  border: 2px solid #0B60B0;
+  box-sizing: border-box;
 }
 
 .deleteTitle {
-  color : #c66b3d;
+  color : #0B60B0;
 }
 
 .createcomModal {
   text-align: center;
-  border: 2px solid #c66b3d;
+  border: 2px solid #0B60B0;
 }
 
 .createcomTitle {
-  color : #c66b3d;
+  color : #0B60B0;
 }

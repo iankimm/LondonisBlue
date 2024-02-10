@@ -10,6 +10,8 @@ const titleError1 = "Title name must include alphabetic characters"
 const titleError2 = "Title must be longer 3 characters"
 const bodyError1 = "Body name must include alphabetic characters"
 const bodyError2 = "Body must be longer 3 characters"
+const infiniteTitleError = "Title is limited to 50 alphabet characters"
+const infiniteBodyError = "Body is limitted to 1000 alphabet characters"
 
 const validImgFormat = [
   ".jpg",
@@ -41,11 +43,17 @@ function CreatePostPage() {
     if(title.length < 3) {
       errorCollector.title = titleError2
     }
+    if(title.length > 50) {
+      errorCollector.title = infiniteTitleError
+    }
     if(title.length && title.trim() === "") {
       errorCollector.title = titleError1
     }
     if(body.length < 3) {
       errorCollector.body = bodyError2
+    }
+    if(body.length > 1000) {
+      errorCollector.body = infiniteBodyError
     }
     if(body.length && body.trim() === "") {
       errorCollector.body = bodyError1
@@ -88,7 +96,7 @@ function CreatePostPage() {
         {/* title */}
         <li>
           <label>
-            TITLE :
+            TITLE <br />
             <input
               type="text"
               value={title}
@@ -102,7 +110,7 @@ function CreatePostPage() {
         {/* body */}
         <li>
           <label>
-            BODY :
+            BODY<br />
             <input
               type="text"
               value={body}
@@ -116,7 +124,7 @@ function CreatePostPage() {
         {/* image */}
         <li>
           <label>
-            IMAGE :
+            IMAGE <br />
             <input
               type="text"
               value={image}

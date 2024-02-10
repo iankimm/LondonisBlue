@@ -16,7 +16,7 @@
   position: fixed;
   top: 50px;
   right: 10px;
-  background-color: #c4a35a;
+  background-color: #0B60B0;
   padding: 10px;
   border-radius: 8px;
   font-family: Arial, sans-serif;
@@ -27,7 +27,7 @@
 }
 
 .navigationBar {
-  background-color: #6b7b8c;
+  background-color: #40A2D8;
 }
 
 .button-link {

@@ -10,11 +10,15 @@ span {
 .FollowShowContainer {
   display: block;
   width: 60px;
-  background-color: #26495c;
+  background-color: #40A2D8;
   color: white;
 }
 
 .usernamee {
-  color:#c66b3d;
+  color:#0B60B0;
   font-family: 'Lucida Sans', Arial, sans-serif;
+}
+
+.mainTitleContainner {
+  margin-left: 8px;
 }

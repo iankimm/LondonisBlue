@@ -29,7 +29,7 @@ const SinglePostTile = ({
 
   return (
     <div className = "tileContainer">
-
+      <div className = "mainTitleContainner">
       {user && (<img className="ProfileImage" src={`${user.image_url}`} alt="profile" />)
 
       }{"  "}
@@ -44,6 +44,7 @@ const SinglePostTile = ({
       <div className="PostLikeButtonBox">
       <PostLikeComponent post={post} />
       <FollowComponent post={post} />
+      </div>
       </div>
       <hr></hr>
     </div>

@@ -22,6 +22,7 @@ function App() {
   return (
     <div className="mainContainer">
       <Navigation isLoaded={isLoaded} />
+      <div className="mainBody">
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -47,17 +48,17 @@ function App() {
           </Route>
         </Switch>
       )}
-
+      </div>
       <div className="footer">
       <hr></hr>
         <div>
           Ian H. Kim
         </div>
         <div>
-          Github : https://github.com/iankimm/
+          <a href="https://github.com/iankimm/">Github</a>
         </div>
         <div>
-          E-mail : iankimmmmm@gmail.com
+          iankimmmmm@gmail.com
         </div>
       </div>
     </div>

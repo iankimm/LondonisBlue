@@ -12,14 +12,14 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #e6e6dc;
+  background-color: #F0EDCF;
 }
 
 /* button */
 .button-link {
   display: inline-block;
   padding: 3px 3px;
-  background-color: #c66b3d;
+  background-color: #0B60B0;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -38,4 +38,8 @@ body {
 
 .button-link:hover {
   cursor: pointer;
+}
+
+.mainBody {
+  margin: 15px 15px 15px 15px;
 }
