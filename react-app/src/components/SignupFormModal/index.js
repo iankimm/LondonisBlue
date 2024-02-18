@@ -177,6 +177,7 @@ function SignupFormModal() {
 				</div>
 
 				<div>
+					<br></br>
 					<button className="button-link" type="submit">Sign Up</button>
 				</div>
 

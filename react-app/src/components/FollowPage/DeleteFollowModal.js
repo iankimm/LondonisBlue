@@ -16,14 +16,13 @@ function DeleteFollowModal({followId, followingUserId}) {
   }
 
   return (
-    <>
-      <h1>Delete a Follow</h1>
+    <div className="DeleteModal">
+      <span className="deleteTitle"><h1>Delete a Follow</h1></span>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Yes (Delete Follow)</button>
-        <button onClick={closeModal}>No (Keep Follow)</button>
+        <div><button className="button-link" type="submit">Yes (Delete Follow)</button></div>
+        <button className="button-link" onClick={closeModal}>No (Keep Follow)</button>
       </form>
-    </>
+    </div>
   );
 }
-
 export default DeleteFollowModal;
