@@ -133,7 +133,7 @@ function CreatePostPage() {
           </label>
           {errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
         </li>
-
+        <br />
         <button className="button-link" type="submit">Create Post</button>
 
       </form>

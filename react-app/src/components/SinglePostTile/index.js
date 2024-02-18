@@ -33,7 +33,7 @@ const SinglePostTile = ({
       {user && (<img className="ProfileImage" src={`${user.image_url}`} alt="profile" />)
 
       }{"  "}
-      <span className="usernamee">{user.username}</span>
+      {user && <span className="usernamee">{user.username}</span>}
 
       <br></br>
 

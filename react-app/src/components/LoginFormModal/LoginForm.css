@@ -6,3 +6,7 @@
   text-align: center;
   border: 2px solid #0B60B0;
 }
+
+button {
+  margin-top: 3px;
+}

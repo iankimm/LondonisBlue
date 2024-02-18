@@ -44,7 +44,9 @@ const PrintFollowUser = ({follow}) => {
           modalComponent={<DeleteFollowModal followId={follow.id} followingUserId={follow.following_user_id}/>}
         />
       }
+      <hr/>
     </div>
+
   )
 }
 
