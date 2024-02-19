@@ -7,6 +7,7 @@
   font-size: 11px;
   color: #26495c;
   text-align: center;
+  padding: 10px 0;
 }
 
 body {
@@ -42,4 +43,13 @@ body {
 
 .mainBody {
   margin: 15px 15px 15px 15px;
+  overflow: hidden;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction:column;
+  min-height: 100vh;
+  position: relative;
+  max-height: 1200px;
 }

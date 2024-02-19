@@ -14,4 +14,24 @@ post_images_data = [
     'post_id' : 3,
     'user_id' : 3,
   },
+  {
+    'image_url': 'https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt994aabf4e5efcc93/65773fb67a651c040a10d8d6/Power_Rank_Chelsea_(2).jpg',
+    'post_id' : 4,
+    'user_id' : 4,
+  },
+  {
+    'image_url': 'https://ichef.bbci.co.uk/onesport/cps/624/cpsprodpb/7965/production/_132677013_raheemsterlingscorestoputchelsea1-0aheadagainstmanchestercity.jpg',
+    'post_id' : 5,
+    'user_id' : 5,
+  },
+  {
+    'image_url': 'https://facts.net/wp-content/uploads/2023/07/16-facts-about-chelsea-1690434365.jpg',
+    'post_id' : 6,
+    'user_id' : 6,
+  },
+  {
+    'image_url': 'https://e0.365dm.com/24/02/1600x900/skysports-cole-palmer-chelsea_6456570.jpg',
+    'post_id' : 7,
+    'user_id' : 7,
+  },
 ]

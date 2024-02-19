@@ -41,3 +41,12 @@
 .createcomTitle {
   color : #0B60B0;
 }
+
+.pagination {
+  position: absolute;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}

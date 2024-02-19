@@ -1,6 +1,6 @@
 import "./commentlist.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {useSelector, useDispatch} from 'react-redux'
 
 import PrintComment from "./printComment";
@@ -22,6 +22,14 @@ const CommentList = ({postId}) => {
   const allPosts = useSelector((state) => Object.values(state?.post?.allPosts))
   const selectedPost = allPosts.find(post => post.id == postId)
 
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [commentsPerPage] = useState(5);
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  const currentComments = postComments.slice(indexOfFirstComment, indexOfLastComment);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     dispatch(fetchCommentByPostId(postId))
     dispatch(fetchPost())
@@ -40,9 +48,22 @@ const CommentList = ({postId}) => {
       buttonText="Create Comment"
       modalComponent={<CreateCommentModal postId={postId}/>}
     /> : ""}
-      {postComments.map((comment) => (
+      {currentComments && currentComments.map((comment) => (
         <PrintComment comment={comment} like={commentlikes} />
       ))}
+
+      {/* pagination */}
+      <ul className="pagination">
+        {postComments.length > commentsPerPage &&
+          Array.from({ length: Math.ceil(postComments.length / commentsPerPage) }, (_, i) => (
+            <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+              <button onClick={() => paginate(i + 1)} className="page-link">
+                {i + 1}
+              </button>
+            </li>
+          ))}
+      </ul>
+
       <hr></hr>
     </div>
   )
