@@ -49,7 +49,9 @@ function App() {
         </Switch>
       )}
       </div>
+
       <div className="footer">
+      <div></div>
       <hr></hr>
         <div>
           Ian H. Kim

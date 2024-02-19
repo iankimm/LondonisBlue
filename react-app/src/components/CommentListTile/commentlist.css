@@ -44,7 +44,7 @@
 
 .pagination {
   position: absolute;
-  bottom: 100px;
+  bottom: 50px;
   left: 48%;
   transform: translateX(-50%);
   display: flex;
