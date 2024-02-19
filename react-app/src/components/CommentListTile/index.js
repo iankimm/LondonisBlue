@@ -64,7 +64,6 @@ const CommentList = ({postId}) => {
           ))}
       </ul>
 
-      <hr></hr>
     </div>
   )
 }
