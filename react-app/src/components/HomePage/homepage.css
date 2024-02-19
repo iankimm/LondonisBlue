@@ -1,0 +1,31 @@
+.HomePageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100px;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.pagination button:hover {
+  background-color: #f0f0f0;
+}
