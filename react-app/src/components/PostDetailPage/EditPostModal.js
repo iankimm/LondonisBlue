@@ -112,7 +112,7 @@ function EditPostModal({post}) {
         {/* Title */}
         <div>
           <label>
-            Title :
+            Title<br />
             <input
               type="text"
               value={title}
@@ -122,10 +122,25 @@ function EditPostModal({post}) {
           </label>
           {errors && errors.title && <p className="errorDiv">{errors.title}</p>}
         </div>
+
+        {/* Post Image */}
+        <div>
+          <label>
+            Post Image <br />
+            <input
+              type="text"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              required
+            />
+          </label>
+          {errors && errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
+        </div>
+
         {/* Body */}
         <div>
           <label>
-            Body :
+            Body<br />
             <input
               type="text"
               value={body}
@@ -136,19 +151,7 @@ function EditPostModal({post}) {
           {errors && errors.body && <p className="errorDiv">{errors.body}</p>}
         </div>
 
-        {/* Post Image */}
-        <div>
-          <label>
-            Post Image :
-            <input
-              type="text"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-              required
-            />
-          </label>
-          {errors && errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
-        </div>
+
         <div>
           <button className="button-link" type="submit" disabled={isDisabled}>Edit a Post</button>
         </div>

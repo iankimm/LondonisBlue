@@ -60,12 +60,13 @@ function CreateCommentModal({postId}) {
 
         {/* Body */}
         <div>
-          <label>
-            Body :
+          <label className="labelbelow">
+            Body  <br />
             <input
               type="text"
               value={body}
               onChange={(e) => setBody(e.target.value)}
+
               required
             />
           </label>

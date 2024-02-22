@@ -54,3 +54,12 @@ body {
   position: relative;
   max-height: 1200px;
 }
+
+.bodybox {
+  height: 100px;
+  width: 400px;
+}
+
+label {
+  margin-bottom: 10px;
+}
