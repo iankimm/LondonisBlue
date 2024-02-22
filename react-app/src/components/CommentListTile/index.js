@@ -24,7 +24,7 @@ const CommentList = ({postId}) => {
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [commentsPerPage] = useState(5);
+  const [commentsPerPage] = useState(4);
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments = postComments.slice(indexOfFirstComment, indexOfLastComment);

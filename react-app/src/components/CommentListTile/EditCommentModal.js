@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { editAComment } from "../../store/comment";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./commentlist.css";
 
 function EditCommentModal({comment}) {
   const history = useHistory()

@@ -51,7 +51,7 @@ function LoginFormModal() {
           />
         </label>
         </div>
-        <div>
+        <div className="marg">
         <label>
           Password :
           <input

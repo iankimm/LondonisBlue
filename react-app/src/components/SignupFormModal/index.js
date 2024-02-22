@@ -100,7 +100,7 @@ function SignupFormModal() {
 					{errors && errors.email && <p className="errorDiv">{errors.email}</p>}
 				</div>
 
-				<div>
+				<div className="marg">
 					<label>
 						Username<br />
 						<input
@@ -113,7 +113,7 @@ function SignupFormModal() {
 					{errors && errors.username && <p className="errorDiv">{errors.username}</p>}
 				</div>
 
-				<div>
+				<div className="marg">
 					<label>
 						First Name<br />
 						<input
@@ -126,7 +126,7 @@ function SignupFormModal() {
 					{errors && errors.firstname && <p className="errorDiv">{errors.firstname}</p>}
 				</div>
 
-				<div>
+				<div className="marg">
 					<label>
 						Last Name<br />
 						<input
@@ -140,7 +140,7 @@ function SignupFormModal() {
 				</div>
 
 				<div>
-					<label>
+					<label className="marg">
 						Profile Image<br />
 						<input
 							type="text"
@@ -152,7 +152,7 @@ function SignupFormModal() {
 					{errors && errors.profile && <p className="errorDiv">{errors.profile}</p>}
 				</div>
 
-				<div>
+				<div className="marg">
 					<label>
 						Password<br />
 						<input
@@ -164,7 +164,7 @@ function SignupFormModal() {
 					</label>
 				</div>
 
-				<div>
+				<div className="marg">
 					<label>
 						Confirm Password<br />
 						<input

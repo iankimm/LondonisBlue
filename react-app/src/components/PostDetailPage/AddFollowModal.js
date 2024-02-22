@@ -20,13 +20,13 @@ function AddFollowModal({following_user_id}) {
   }
 
   return (
-    <>
+    <div className="addFollow">
       <h1>Follow this User?</h1>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Yes (Follow User)</button>
-        <button onClick={closeModal}>No (Do not follow User)</button>
+        <button className="button-link" type="submit">Yes (Follow User)</button>
+        <div><button className="button-link" onClick={closeModal}>No (Do not follow User)</button></div>
       </form>
-    </>
+    </div>
   );
 }
 

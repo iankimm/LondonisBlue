@@ -5,8 +5,13 @@
 .loginModall {
   text-align: center;
   border: 2px solid #0B60B0;
+  padding: 70px 30px 70px 30px;
 }
 
 button {
   margin-top: 3px;
+}
+
+.marg {
+  margin-top: 10px;
 }
