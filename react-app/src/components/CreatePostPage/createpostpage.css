@@ -11,3 +11,19 @@ li {
 .CreatePostPageContainer {
   text-align: center;
 }
+
+.bodybox {
+  height: 100px;
+  width: 400px;
+
+}
+
+.titlebox {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.imagebox {
+  width: 300px;
+  margin-bottom: 10px;
+}

@@ -53,15 +53,14 @@ const PostDetailPage = () => {
     <div className = "PostDetailPageContainer">
       <div className = "DetailTitle">
         {selectedPost && (<div>
-          <h1>{selectedPost.title}</h1>
+          <h1 className="h1marg">{selectedPost.title}</h1>
+
         {sessionUser && !follows && selectedPost.user_id != sessionUser.id ?
-        <div>
           <OpenModalButton
           className="AddFollowButton"
           buttonText="Follow"
           modalComponent={<AddFollowModal following_user_id = {selectedPost.user_id}/>}
           />
-        </div>
         :""
         }
         </div>)}
@@ -82,11 +81,11 @@ const PostDetailPage = () => {
           {
             selectedPost && sessionUser && selectedPost.user_id == sessionUser.id ?
             <div>
-              <OpenModalButton
+              <span className="hello"><OpenModalButton
                 className="EditPostButton"
                 buttonText="Edit Post"
                 modalComponent={<EditPostModal post = {selectedPost}/>}
-              />
+              /></span>
               <OpenModalButton
                 className="DeletePostButton"
                 buttonText="Delete Post"

@@ -4,8 +4,10 @@
 }
 
 .printFirst {
-  color:#0B60B0;
-  font-family: 'Lucida Sans', Arial, sans-serif;
+  background-color:black;
+  color: white;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  padding: 3px 3px 0px 3px;
 }
 
 .PrintBody {
@@ -20,9 +22,18 @@
 .EditComModal {
   text-align: center;
   border: 2px solid #0B60B0;
+  padding: 50px 30px 50px 30px;
 }
 
 .DeleteModal {
+  text-align: center;
+  padding: 15px;
+  border: 2px solid #0B60B0;
+  box-sizing: border-box;
+  padding: 50px 30px 50px 30px;
+}
+
+.createcomModal {
   text-align: center;
   padding: 15px;
   border: 2px solid #0B60B0;
@@ -36,6 +47,7 @@
 .createcomModal {
   text-align: center;
   border: 2px solid #0B60B0;
+  padding: 50px 30px 50px 30px;
 }
 
 .createcomTitle {
@@ -49,4 +61,27 @@
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
+}
+
+.CommentListContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100px;
+}
+
+.hello {
+  margin-right: 10px;
+}
+
+.CreatedDate {
+  margin-top: 3px;
+}
+
+.CommentLikess {
+  margin-top: 5px;
+}
+
+.PrintBody {
+  margin-top: 5px;
 }

@@ -36,17 +36,17 @@ const PrintComment = ({comment, like}) => {
       <div className="CreatedDate">
         Posted on : {comment.created_at}
       </div>
-      <div>
+      <div className="CommentLikess">
       <CommentLikeComponent comment={comment} />
       </div>
 
       {sessionUser && sessionUser.id === comment.user_id ?
         <div>
-        <OpenModalButton
+        <span className="hello"><OpenModalButton
           className="EditCommentButton"
           buttonText="Edit Comment"
           modalComponent={<EditCommentModal comment={comment}/>}
-        />
+        /></span>
         <OpenModalButton
           className="DeleteCommentButton"
           buttonText="Delete Comment"
@@ -54,6 +54,7 @@ const PrintComment = ({comment, like}) => {
         />
         </div> : ""
       }
+      <br />
     </div>
   )
 }

@@ -15,10 +15,16 @@ span {
 }
 
 .usernamee {
-  color:#0B60B0;
-  font-family: 'Lucida Sans', Arial, sans-serif;
+  background-color:black;
+  color: white;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  padding: 3px 3px 0px 3px;
 }
 
 .mainTitleContainner {
   margin-left: 8px;
+}
+
+.PostLikeButtonBox {
+  margin-top: 3px;
 }

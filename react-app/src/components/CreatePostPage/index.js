@@ -101,24 +101,11 @@ function CreatePostPage() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className="titlebox"
               required
             />
           </label>
           {errors.title && <p className="errorDiv">{errors.title}</p>}
-        </li>
-
-        {/* body */}
-        <li>
-          <label>
-            BODY<br />
-            <input
-              type="text"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-              required
-            />
-          </label>
-          {errors.body && <p className="errorDiv">{errors.body}</p>}
         </li>
 
         {/* image */}
@@ -129,10 +116,29 @@ function CreatePostPage() {
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
+              className="imagebox"
+              required
             />
           </label>
           {errors.wrongFormat && <p className="errorDiv">{errors.wrongFormat}</p>}
         </li>
+
+        {/* body */}
+        <li>
+          <label>
+            BODY<br />
+            <input
+              type="text"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              className="bodybox"
+              required
+            />
+          </label>
+          {errors.body && <p className="errorDiv">{errors.body}</p>}
+        </li>
+
+
         <br />
         <button className="button-link" type="submit">Create Post</button>
 

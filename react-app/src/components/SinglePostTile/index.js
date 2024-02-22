@@ -35,7 +35,7 @@ const SinglePostTile = ({
       }{"  "}
       {user && <span className="usernamee">{user.username}</span>}
 
-      <br></br>
+      <br/>
 
       <Link className="main-post"to={`/post/${post?.id}`}>
         {post.title}

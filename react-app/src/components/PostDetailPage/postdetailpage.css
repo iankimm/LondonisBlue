@@ -7,18 +7,21 @@
 }
 
 .dates {
-  color: rgb(44, 170, 253)
+  color: rgb(44, 170, 253);
+  font-size: 12px;
 }
 
 .DetailImageOne {
   max-width: 400px;
   width: 400px;
   border: 2px solid #40A2D8;
+  margin-top: 10px;
 }
 
 .editmodal {
   text-align: center;
   border: 2px solid #40A2D8;
+  padding: 50px 30px 50px 30px;
 }
 
 .editPostTitle {
@@ -31,7 +34,18 @@
 
 .deleteModal {
   text-align: center;
-  padding: 15px;
   border: 2px solid #0B60B0;
   box-sizing: border-box;
+  padding: 50px 30px 50px 30px;
+}
+
+.addFollow {
+  text-align: center;
+  border: 2px solid #0B60B0;
+  padding: 50px 30px 50px 30px;
+  color: #0B60B0;
+}
+
+.h1marg {
+  margin: 5px 5px 5px 5px;
 }
