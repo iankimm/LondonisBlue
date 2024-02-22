@@ -24,6 +24,8 @@
 
 .LogoImage {
   max-width: 100px;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 .navigationBar {
