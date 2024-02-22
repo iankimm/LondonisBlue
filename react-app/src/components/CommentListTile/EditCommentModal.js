@@ -70,7 +70,7 @@ function EditCommentModal({comment}) {
         {/* Body */}
         <div>
           <label>
-            Body :
+            Body <br />
             <input
               type="text"
               value={body}

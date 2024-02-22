@@ -42,7 +42,7 @@ function LoginFormModal() {
         </ul>
         <div>
         <label>
-          Email :
+          Email <br/>
           <input
             type="text"
             value={email}
@@ -53,7 +53,7 @@ function LoginFormModal() {
         </div>
         <div className="marg">
         <label>
-          Password :
+          Password  <br/>
           <input
             type="password"
             value={password}
